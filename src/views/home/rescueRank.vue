@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import {request} from "../../../network/request"
+import {request} from "../../network/request"
 import FileSaver from 'file-saver'
 import XLSX from 'xlsx'
 

@@ -46,8 +46,8 @@ export default {
     handleclose() {
       //console.log('handleclose');
     },
-    handleselect: function (a, b) {
-    },
+    // handleselect: function (a, b) {
+    // },
   },
   mounted() {
     var user = sessionStorage.getItem('user');

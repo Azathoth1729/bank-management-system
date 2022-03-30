@@ -106,7 +106,7 @@
 <script>
 
 export default {
-  name: 'report',
+  name: 'Report',
   components: {
 
   },

@@ -22,7 +22,7 @@
 
 <script>
     import * as echarts from 'echarts'
-    import {request} from "../../../network/request";
+    import {request} from "../../network/request";
     export default {
       name: 'HelpEcharts',
         data() {

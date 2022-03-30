@@ -46,7 +46,6 @@ export default {
     //获取用户认证列表
     getContacts() {
       // 发送请求获取用户申请信息
-      let contactList = []
       request({
         url: '/user/authenticationList',
         header:{

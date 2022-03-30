@@ -1,14 +1,17 @@
 <template>
   <el-row class="container">
-    <Header/>
+    <Header />
     <el-col :span="24" class="main">
-      <Navigator/>
+      <Navigator />
       <section class="content-container">
         <div class="grid-content bg-purple-light">
           <el-col :span="24" class="breadcrumb-container">
-            <strong ref="title" class="title">{{$route.name}}</strong>
+            <strong ref="title" class="title">{{ $route.name }}</strong>
             <el-breadcrumb separator="/" class="breadcrumb-inner">
-              <el-breadcrumb-item v-for="item in $route.matched" :key="item.path">
+              <el-breadcrumb-item
+                v-for="item in $route.matched"
+                :key="item.path"
+              >
                 {{ item.name }}
               </el-breadcrumb-item>
             </el-breadcrumb>
@@ -25,24 +28,16 @@
 </template>
 
 <script>
-import Navigator from '../../components/navigator/navigator'
-import Header from '../../components/header/header'
+import Navigator from "../../components/navigator/navigator";
+import Header from "../../components/header/header";
 
 export default {
-  name: 'Home',
-  components:{
+  name: "Home",
+  components: {
     Navigator,
-    Header
+    Header,
   },
-  data() {
-    return {}
-  },
-  methods: {
-  },
-  mounted() {
-  }
-}
-
+};
 </script>
 
 <style scoped>
@@ -83,13 +78,12 @@ export default {
   box-sizing: border-box;
 }
 
-.content-wrapper{
+.content-wrapper {
   margin-top: 30px;
 }
 
-.title{
+.title {
   margin-left: -50px;
   font-size: large;
 }
-
 </style>
