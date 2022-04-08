@@ -18,7 +18,7 @@
           v-if="!item.leaf && index !== 0 && index !== 1"
           :key="index"
         >
-          <template slot="title">
+          <template v-slot:title>
             <div class="title">
               <p style="font-size: 17px ; color: #909399">{{ item.name }}</p>
             </div>

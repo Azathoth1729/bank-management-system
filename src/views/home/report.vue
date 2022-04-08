@@ -8,7 +8,7 @@
     <template> 
       <br>
       <el-descriptions title="自定义样式列表" :column="3" border  >
-        <template slot="extra">
+        <template v-slot:extra>
           <el-button type="primary" size="small">详情</el-button>
         </template>
         <el-descriptions-item label="用户名" label-class-name="my-label" content-class-name="my-content">kooriookami</el-descriptions-item>
@@ -22,7 +22,7 @@
       <br>
       <br>
       <el-descriptions title="自定义样式列表" :column="3" border  >
-        <template slot="extra">
+        <template v-slot:extra>
           <el-button type="primary" size="small">详情</el-button>
         </template>
         <el-descriptions-item label="用户名" label-class-name="my-label" content-class-name="my-content">kooriookami</el-descriptions-item>
@@ -35,7 +35,7 @@
       </el-descriptions>
       <br><br>
       <el-descriptions title="自定义样式列表" :column="3" border  >
-        <template slot="extra">
+        <template v-slot:extra>
           <el-button type="primary" size="small">详情</el-button>
         </template>
         <el-descriptions-item label="用户名" label-class-name="my-label" content-class-name="my-content">kooriookami</el-descriptions-item>
@@ -48,7 +48,7 @@
       </el-descriptions>
       <br><br>
       <el-descriptions title="自定义样式列表" :column="3" border  >
-        <template slot="extra">
+        <template v-slot:extra>
           <el-button type="primary" size="small">详情</el-button>
         </template>
         <el-descriptions-item label="用户名" label-class-name="my-label" content-class-name="my-content">kooriookami</el-descriptions-item>
@@ -61,7 +61,7 @@
       </el-descriptions>
       <br><br>
       <el-descriptions title="自定义样式列表" :column="3" border  >
-        <template slot="extra">
+        <template v-slot:extra>
           <el-button type="primary" size="small">详情</el-button>
         </template>
         <el-descriptions-item label="用户名" label-class-name="my-label" content-class-name="my-content">kooriookami</el-descriptions-item>
@@ -74,7 +74,7 @@
       </el-descriptions>
       <br><br>
       <el-descriptions title="自定义样式列表" :column="3" border  >
-        <template slot="extra">
+        <template v-slot:extra>
           <el-button type="primary" size="small">详情</el-button>
         </template>
         <el-descriptions-item label="用户名" label-class-name="my-label" content-class-name="my-content">kooriookami</el-descriptions-item>
@@ -87,7 +87,7 @@
       </el-descriptions>
       <br><br>
       <el-descriptions title="自定义样式列表" :column="3" border  >
-        <template slot="extra">
+        <template v-slot:extra>
           <el-button type="primary" size="small">详情</el-button>
         </template>
         <el-descriptions-item label="用户名" label-class-name="my-label" content-class-name="my-content">kooriookami</el-descriptions-item>

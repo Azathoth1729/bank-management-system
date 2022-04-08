@@ -9,7 +9,7 @@
       :default-sort="{ prop: 'start_date', order: 'descending' }"
     >
       <el-table-column type="expand">
-        <template slot-scope="props">
+        <template v-slot="props">
           <!-- form -->
           <el-form label-position="left" inline class="demo-table-expand">
             <el-form-item label="产品名">
@@ -52,7 +52,7 @@
         :filter-method="filterTag"
         filter-placement="bottom-end"
       >
-        <template slot-scope="scope">
+        <template v-slot="scope">
           <el-tag
             :type="scope.row.tag === '白酒' ? 'primary' : 'success'"
             disable-transitions

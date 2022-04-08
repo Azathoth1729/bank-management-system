@@ -13,13 +13,13 @@
         <el-table-column show-overflow-tooltip="true" property="mobile" label="联系方式"></el-table-column>
         <el-table-column show-overflow-tooltip="true" property="content" label="内容"></el-table-column>
         <el-table-column show-overflow-tooltip="true" property="isHurt" label="是否受伤">
-          <template slot-scope="scope">
+          <template v-slot="scope">
             <span v-if="scope.row.isHurt === 1">有人受伤</span>
             <span v-else>无人受伤</span>
           </template>
         </el-table-column>
         <el-table-column fixed="right">
-          <template scope="scope">
+          <template v-slot="scope">
             <el-button type="danger" round @click.stop.prevent="deleteInform(scope.row)">移除</el-button>
           </template>
         </el-table-column>
@@ -29,7 +29,7 @@
                      layout="prev, pager, next"
                      :total="tableData.length"
                      :page-size="pageSize"
-                     :current-page.sync="currentPage"
+                     v-model:current-page="currentPage"
                      @current-change="handleCurrentChange(currentPage)">
       </el-pagination>
     </template>

@@ -75,7 +75,7 @@ export default {
       this.c = null
     }
   },
-  beforeDestroy() {
+  beforeUnmount() {
     this.destroy()
   },
   start(callback) {

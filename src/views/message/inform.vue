@@ -14,7 +14,7 @@
         <el-table-column property="title" :show-overflow-tooltip="true" label="标题" width="200"></el-table-column>
         <el-table-column property="content" :show-overflow-tooltip="true" label="内容"></el-table-column>
         <el-table-column label="操作" fixed="right">
-          <template scope="scope">
+          <template v-slot="scope">
            <el-button type="danger" round @click.stop.prevent="deleteInform(scope.row)">移除</el-button>
           </template>
         </el-table-column>
@@ -24,7 +24,7 @@
        layout="prev, pager, next"
        :total="tableData.length"
        :page-size="pageSize"
-       :current-page.sync="currentPage"
+       v-model:current-page="currentPage"
        @current-change="handleCurrentChange(currentPage)">
       </el-pagination>
     </template>

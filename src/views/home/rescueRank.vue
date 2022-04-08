@@ -16,7 +16,7 @@
                      layout="prev, pager, next"
                      :total="tableData.length"
                      :page-size="pageSize"
-                     :current-page.sync="currentPage"
+                     v-model:current-page="currentPage"
                      @current-change="handleCurrentChange(currentPage)">
       </el-pagination>
   </div>

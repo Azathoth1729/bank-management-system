@@ -23,7 +23,7 @@
       <el-table-column prop="materialName" label="物资名" width="200" sortable></el-table-column>
       <el-table-column prop="quantity" label="数量" width="200" sortable></el-table-column>
       <el-table-column label="操作" width="150" fixed="right">
-        <template scope="scope">
+        <template v-slot="scope">
           <el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
           <el-button type="danger" size="small" @click="handleDel(scope.$index, scope.row)">删除</el-button>
         </template>
