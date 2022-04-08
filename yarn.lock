@@ -1724,6 +1724,11 @@
   "resolved" "https://registry.npm.taobao.org/arch/download/arch-2.2.0.tgz"
   "version" "2.2.0"
 
+"area-data@^5.0.6", "area-data@>=5.0.6":
+  "integrity" "sha512-QxLoA+823xXKyhw5S3750I9TToki0OS42HU9ol3rCOsCXfkjtl8RtQ/eoj0cK0Levn4//oEM05FmMumfw/HIlg=="
+  "resolved" "https://registry.npmjs.org/area-data/-/area-data-5.0.6.tgz"
+  "version" "5.0.6"
+
 "argparse@^1.0.7":
   "integrity" "sha1-vNZ5HqWuCXJeF+WtmIE0zUCz2RE="
   "resolved" "https://registry.nlark.com/argparse/download/argparse-1.0.10.tgz"
@@ -3451,7 +3456,7 @@
 
 "element-china-area-data@^5.0.2":
   "integrity" "sha512-vLQuvOKJy/uiX7MRHEk3x/j09hipuIl6DJ/C4XFUG7D7Pj3O47sy+Y6aAArM6k9v8cD9UX6e+yz2S4J+IPnZ8g=="
-  "resolved" "https://registry.npmmirror.com/element-china-area-data/-/element-china-area-data-5.0.2.tgz"
+  "resolved" "https://registry.npmjs.org/element-china-area-data/-/element-china-area-data-5.0.2.tgz"
   "version" "5.0.2"
   dependencies:
     "china-area-data" "^5.0.1"
@@ -5480,6 +5485,11 @@
   "integrity" "sha1-US6b1yHSctlOPTpjZT+hdRZ0HKY="
   "resolved" "https://registry.nlark.com/lodash.defaultsdeep/download/lodash.defaultsdeep-4.6.1.tgz"
   "version" "4.6.1"
+
+"lodash.find@^4.6.0":
+  "integrity" "sha1-ywcE1Hq3F4n/oN6Ll92Sb7iLE7E="
+  "resolved" "https://registry.npmjs.org/lodash.find/-/lodash.find-4.6.0.tgz"
+  "version" "4.6.0"
 
 "lodash.kebabcase@^4.1.1":
   "integrity" "sha1-hImxyw0p/4gZXM7KRI/21swpXDY="
@@ -8547,6 +8557,13 @@
   "resolved" "https://registry.nlark.com/vm-browserify/download/vm-browserify-1.1.2.tgz"
   "version" "1.1.2"
 
+"vue-area-linkage@^5.1.0":
+  "integrity" "sha512-86WD4O6PD9e2koWZ81Zlfcyey17U1+3B3fpWoyIZlBIe2V6qfvrg9BTozWdTpdF4CmKBiz138LBRTKhawl/UWw=="
+  "resolved" "https://registry.npmjs.org/vue-area-linkage/-/vue-area-linkage-5.1.0.tgz"
+  "version" "5.1.0"
+  dependencies:
+    "lodash.find" "^4.6.0"
+
 "vue-countupjs@^1.0.0":
   "integrity" "sha1-QcV6peSFnPwNgusDV0sL7NucqQs="
   "resolved" "https://registry.npmjs.org/vue-countupjs/-/vue-countupjs-1.0.0.tgz"
@@ -8619,7 +8636,7 @@
   "resolved" "https://registry.nlark.com/vue-template-es2015-compiler/download/vue-template-es2015-compiler-1.9.1.tgz"
   "version" "1.9.1"
 
-"vue@^2 || ^3.0.0-0", "vue@^2.0.0", "vue@^2.3.3", "vue@^2.5.17", "vue@^2.6.10", "vue@^2.6.11":
+"vue@^2 || ^3.0.0-0", "vue@^2.0.0", "vue@^2.3.3", "vue@^2.5.17", "vue@^2.6.10", "vue@^2.6.11", "vue@>=2.2.0":
   "integrity" "sha1-5RqlJQJQ1Wmj+606ilpofWA24jU="
   "resolved" "https://registry.npmmirror.com/vue/download/vue-2.6.14.tgz"
   "version" "2.6.14"

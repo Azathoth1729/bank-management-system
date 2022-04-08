@@ -10,7 +10,7 @@
                label-position="left"
                label-width="0px"
                class="demo-ruleForm login-page">
-        <h3 class="title">银行后台管理系统 登录</h3>
+        <h3 class="title">银行管理系统 登录</h3>
         <el-form-item >
           <el-input
               prop="username"
@@ -74,12 +74,12 @@ export default {
 
           sessionStorage.setItem('username', this.user.username);
           sessionStorage.setItem('password', this.user.password);
-          this.$router.push('/home/report');
+          this.$router.push('/home/dashboard');
         }
       }).catch(err => {
         console.log(err.msg);
       });
-      this.$router.push('/home/report');
+      this.$router.push('/home/dashboard');
     }
   }
 };

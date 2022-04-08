@@ -3,29 +3,30 @@
     <el-table
       :data="products"
       height="500"
-      style="width: 100%"
-      stripe
       border
       :default-sort="{ prop: 'start_date', order: 'descending' }"
+      style="width: 100%"
     >
       <el-table-column type="expand">
         <template slot-scope="props">
-          <!-- form -->
           <el-form label-position="left" inline class="demo-table-expand">
             <el-form-item label="产品名">
               <span>{{ props.row.name }}</span>
             </el-form-item>
+            <el-form-item label="产品编号">
+              <span>{{ props.row.id }}</span>
+            </el-form-item>
             <el-form-item label="投资类型">
-              <span>{{ props.row.type }}</span>
+              <span>{{ props.row.type_ }}</span>
             </el-form-item>
             <el-form-item label="管理费">
-              <span>{{ props.row.glf }}</span>
+              <span>{{ props.row.fee }}</span>
             </el-form-item>
             <el-form-item label="基金经理">
               <span>{{ props.row.manager }}</span>
             </el-form-item>
             <el-form-item label="产品介绍">
-              <div class="intro">
+              <div class="jieshao">
                 <span>{{ props.row.detail }}</span>
               </div>
             </el-form-item>
@@ -48,7 +49,10 @@
         prop="tag"
         label="标签"
         width="100"
-        :filters="getTagFilter()"
+        :filters="[
+          { text: '白酒', value: '白酒' },
+          { text: '新能源', value: '新能源' },
+        ]"
         :filter-method="filterTag"
         filter-placement="bottom-end"
       >
@@ -105,24 +109,11 @@
 import products from "../../assets/data/products";
 
 export default {
-  name: "Products",
+  name: "ProductList",
   data() {
     return {
       products,
     };
-  },
-
-  methods: {
-    getTagFilter() {
-      return [
-        { text: "白酒", value: "白酒" },
-        { text: "新能源", value: "新能源" },
-      ];
-    },
-
-    filterTag(val, row) {
-      return row.tag == val;
-    },
   },
 };
 </script>

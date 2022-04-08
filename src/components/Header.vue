@@ -1,7 +1,7 @@
 <template>
   <el-col :span="24" class="header">
     <el-col :span="10" class="logo logo-width">
-      {{sysName}}
+      {{ sysName }}
     </el-col>
     <el-col :span="10">
       <div class="tools">
@@ -10,9 +10,13 @@
     </el-col>
     <el-col :span="4" class="userinfo">
       <el-dropdown trigger="hover">
-        <span class="el-dropdown-link userinfo-inner"><img :src="this.sysUserAvatar" /> {{sysUserName}}</span>
+        <span class="el-dropdown-link userinfo-inner"
+          ><img :src="this.sysUserAvatar" /> {{ sysUserName }}</span
+        >
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item divided @click.native="logout">退出登录</el-dropdown-item>
+          <el-dropdown-item divided @click.native="logout"
+            >退出登录</el-dropdown-item
+          >
         </el-dropdown-menu>
       </el-dropdown>
     </el-col>
@@ -22,36 +26,37 @@
 <script>
 export default {
   name: "Header",
-  data(){
-    return{
-      sysName:'银行后台管理系统',
-      sysUserName: '',
-      sysUserAvatar: require('../../assets/user.png'),
-    }
+  data() {
+    return {
+      sysName: "银行后台管理系统",
+      sysUserName: "",
+      sysUserAvatar: require("../assets/icon.png"),
+    };
   },
   mounted() {
-    let username = localStorage.getItem('username');
-    console.log(username)
-    if (username !== '') {
-      this.sysUserName = username || '';
+    let username = localStorage.getItem("username");
+    console.log(username);
+    if (username !== "") {
+      this.sysUserName = username || "";
     }
   },
-  methods:{
+  methods: {
     //退出登录
-    logout: function () {
+    logout: function() {
       var _this = this;
-      this.$confirm('确认退出吗?', '提示', {
+      this.$confirm("确认退出吗?", "提示", {
         //type: 'warning'
-      }).then(() => {
-        sessionStorage.removeItem('isLogin');
-        sessionStorage.removeItem('username');
-        sessionStorage.removeItem('password');
-        _this.$router.push('/login');
-      }).catch(() => {
-      });
+      })
+        .then(() => {
+          sessionStorage.removeItem("isLogin");
+          sessionStorage.removeItem("username");
+          sessionStorage.removeItem("password");
+          _this.$router.push("/login");
+        })
+        .catch(() => {});
     },
-  }
-}
+  },
+};
 </script>
 
 <style scoped>
@@ -62,7 +67,7 @@ export default {
   width: 100%;
   height: 60px;
   line-height: 60px;
-  background:#303133;
+  background: #303133;
   color: #606266;
 }
 
@@ -116,5 +121,4 @@ export default {
   line-height: 60px;
   cursor: pointer;
 }
-
 </style>
