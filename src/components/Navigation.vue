@@ -61,6 +61,7 @@ export default {
   flex: 1;
   overflow-y: scroll;
   padding: 20px;
+  /* background: #E5E2DF; */
 }
 
 .container .main .content-container .breadcrumb-container .title {

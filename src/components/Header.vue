@@ -3,20 +3,13 @@
     <el-col :span="10" class="logo logo-width">
       {{ sysName }}
     </el-col>
-    <el-col :span="10">
-      <div class="tools">
-        <i class="fa fa-align-justify"></i>
-      </div>
-    </el-col>
     <el-col :span="4" class="userinfo">
-      <el-dropdown trigger="hover">
+      <el-dropdown>
         <span class="el-dropdown-link userinfo-inner"
-          ><img :src="this.sysUserAvatar" /> {{ sysUserName }}</span
-        >
+          ><img :src="this.sysUserAvatar" />
+        </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item divided @click.native="logout"
-            >退出登录</el-dropdown-item
-          >
+          <el-dropdown-item @click.native="logout">退出登录</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </el-col>
@@ -29,7 +22,6 @@ export default {
   data() {
     return {
       sysName: "银行后台管理系统",
-      sysUserName: "",
       sysUserAvatar: require("../assets/icon.png"),
     };
   },
@@ -42,18 +34,17 @@ export default {
   },
   methods: {
     //退出登录
-    logout: function() {
-      var _this = this;
-      this.$confirm("确认退出吗?", "提示", {
-        //type: 'warning'
-      })
+    logout() {
+      this.$confirm("确认退出吗?", "提示", {})
         .then(() => {
           sessionStorage.removeItem("isLogin");
           sessionStorage.removeItem("username");
           sessionStorage.removeItem("password");
-          _this.$router.push("/login");
+          this.$router.push("/login");
         })
-        .catch(() => {});
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 };
@@ -67,8 +58,9 @@ export default {
   width: 100%;
   height: 60px;
   line-height: 60px;
-  background: #303133;
-  color: #606266;
+  background: #E5E2DF;
+  /* color: ; */
+  /* border-bottom: 0.5px solid rgb(195, 206, 203); */
 }
 
 .header .userinfo {
@@ -79,7 +71,6 @@ export default {
 
 .header .userinfo .userinfo-inner {
   cursor: pointer;
-  color: #fff;
 }
 
 .header .userinfo .userinfo-inner img {
@@ -95,9 +86,9 @@ export default {
   font-size: 22px;
   padding-left: 20px;
   padding-right: 20px;
-  border-color: rgba(238, 241, 146, 0.3);
+  /* border-color: rgba(238, 241, 146, 0.3); */
   border-right-width: 1px;
-  border-right-style: solid;
+  /* border-right-style: solid; */
 }
 
 .header .logo img {
@@ -114,11 +105,4 @@ export default {
   width: 230px;
 }
 
-.header .tools {
-  padding: 0px 23px;
-  width: 14px;
-  height: 60px;
-  line-height: 60px;
-  cursor: pointer;
-}
 </style>

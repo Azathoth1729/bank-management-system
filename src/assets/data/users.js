@@ -1,45 +1,38 @@
 const users = [
   [
     {
-      name: "秦傲杰",
-      number: "2019141460306",
-      flag: false,
+      username: "秦傲杰",
+      account: "2019141460306",
     },
     {
-      name: "徐孝鸽",
-      number: "2019141460175",
-      flag: false,
+      username: "徐孝鸽",
+      account: "2019141460175",
     },
     {
-      name: "尚圣东",
-      number: "2019141460324",
-      flag: false,
+      username: "尚圣东",
+      account: "2019141460324",
     },
   ],
   [
     {
-      name: "徐孝鸽",
-      number: "2019141460175",
-      flag: true,
+      username: "徐孝鸽",
+      account: "2019141460175",
     },
     {
-      name: "尚圣东",
-      number: "2019141460324",
-      flag: false,
+      username: "尚圣东",
+      account: "2019141460324",
     },
   ],
   [
     {
-      name: "康桉",
-      number: "2019141460126",
-      flag: false,
+      username: "康桉",
+      account: "2019141460126",
     },
   ],
   [
     {
-      name: "尚圣东",
-      number: "2019141460324",
-      flag: false,
+      username: "尚圣东",
+      account: "2019141460324",
     },
   ],
 ];

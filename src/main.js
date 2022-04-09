@@ -22,6 +22,14 @@ Vue.config.productionTip = false;
 Vue.prototype.pca = pca;
 Vue.prototype.pcaa = pcaa;
 
+Vue.directive("focus", {
+  // 指令的定义
+  inserted: function (el) {
+    // 聚焦元素
+    el.querySelector("input").focus();
+  },
+});
+
 new Vue({
   render: (h) => h(App),
   router: router,

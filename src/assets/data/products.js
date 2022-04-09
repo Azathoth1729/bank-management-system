@@ -18,7 +18,7 @@ const products = [
     id: 205135453,
     start_date: "2016-05-02",
     end_date: "2022-05-02",
-    name: "大秦科技基金",
+    name: "A",
     price: 1000000,
     rate: 0.05,
     intro: "跟着傲杰投, 涨停不用愁...",

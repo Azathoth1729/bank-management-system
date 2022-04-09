@@ -1,16 +1,15 @@
 <template>
   <aside class="menu-expanded">
     <!--导航菜单-->
-    <!-- <el-menu ref="nav" :unique-opened="false" :default-active="$route.path" :router="true" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"> -->
     <el-menu
-      background-color="#303133"
+      background-color="#E5E2DF"
+      text-color=""
+      active-text-color="#D39938"
       ref="nav"
       :unique-opened="false"
       :default-active="$route.path"
       :router="true"
       class="el-menu-vertical-demo"
-      @open="handleOpen"
-      @close="handleClose"
     >
       <template v-for="(item, index) in navRoute">
         <el-submenu
@@ -20,21 +19,19 @@
         >
           <template slot="title">
             <div class="title">
-              <p style="font-size: 17px ; color: #909399">{{ item.name }}</p>
+              <p style="font-size: 17px">{{ item.name }}</p>
             </div>
           </template>
           <template v-for="child in item.children">
             <el-menu-item
-              ref="nav_children"
               :index="item.path + '/' + child.path"
               :key="child.path"
               v-if="!child.hidden"
             >
-              <p class="nav-children">{{ child.name }}</p>
+              <p>{{ child.name }}</p>
             </el-menu-item>
           </template>
         </el-submenu>
-        <!-- <el-menu-item class="nav-children" v-if="item.leaf && item.children.length>0" :index="item.children[0].path">{{item.children[0].name}}</el-menu-item> -->
       </template>
     </el-menu>
   </aside>
@@ -46,24 +43,16 @@ export default {
   data() {
     return {
       navRoute: this.$router.options.routes,
-      routerName: "",
     };
   },
-  mounted() {},
+
   methods: {
-    handleOpen() {
-      // console.log();
-    },
-    handleClose() {
-      // this.$refs.nav.close(index);
+    handleSelect(key, keyPath) {
+      console.log(key, keyPath);
     },
   },
+
   computed: {},
-  updated: function() {
-    this.$nextTick(function() {
-      // console.log("this.item")
-    });
-  },
 };
 </script>
 
@@ -87,9 +76,10 @@ aside .el-menu {
   width: 230px;
   overflow-y: auto; /* 实现超出部分可以加滚动条*/
 }
-.nav-children {
-  color: #475669;
-  text-align: center;
-  font-size: small;
-}
+
+/* .nav-children {
+  color: #ffffff; 
+   text-align: center;
+  font-size: small; 
+} */
 </style>
