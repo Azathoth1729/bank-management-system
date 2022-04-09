@@ -67,6 +67,7 @@ export default {
       imgSrc: require("../../assets/images/bg.png"),
     };
   },
+
   methods: {
     login() {
       request({
@@ -87,13 +88,13 @@ export default {
 
             sessionStorage.setItem("username", this.user.username);
             sessionStorage.setItem("password", this.user.password);
-            this.$router.push("/home/dashboard");
+            this.$router.push("/home/products");
           }
         })
         .catch((err) => {
           console.log(err.msg);
         });
-      this.$router.push("/home/dashboard");
+      this.$router.push("/home/products");
     },
   },
 };

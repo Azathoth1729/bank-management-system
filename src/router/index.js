@@ -1,22 +1,23 @@
 import VueRouter from "vue-router";
-import Login from "../views/login/Login";
 
 import Navigation from "../components/Navigation";
-import DashBoard from "../views/home/DashBoard";
+
+import Login from "../views/login/Login";
+import Home from "../views/home/Home";
 import ProductShow from "../views/home/ProductShow";
 
 import CreateProduct from "../views/create/CreateProduct";
 import History from "../views/create/History";
 
 import ProductList from "../views/product/ProductList";
-import Area from "../views/product/Area";
+import AreaControl from "../views/product/AreaControl";
 import WhiteList from "../views/product/WhiteList";
 import StockControl from "../views/product/StockControl";
 import RateControl from "../views/product/RateControl";
 import Authentication from "../views/product/Authentication";
 import ProductTags from "../views/product/ProductTags";
-import ViolateControl from "../views/product/ViolateControl";
-import BondsMan from "../views/product/BondsMan";
+import PenaltyControl from "../views/product/PenaltyControl";
+import BondsManControl from "../views/product/BondsManControl";
 
 let router = new VueRouter({
   mode: "history",
@@ -42,12 +43,12 @@ let router = new VueRouter({
       children: [
         {
           name: "产品首页",
-          path: "dashboard",
+          path: "products",
           meta: {
             requireAuth: true,
             title: "产品首页",
           },
-          component: DashBoard,
+          component: Home,
         },
         {
           name: "产品详情",
@@ -104,8 +105,8 @@ let router = new VueRouter({
         },
         {
           name: "地区控制",
-          path: "area",
-          component: Area,
+          path: "areaControl",
+          component: AreaControl,
           meta: {
             requireAuth: true,
           },
@@ -152,16 +153,16 @@ let router = new VueRouter({
         },
         {
           name: "违约控制",
-          path: "violate_control",
-          component: ViolateControl,
+          path: "penaltyControl",
+          component: PenaltyControl,
           meta: {
             requireAuth: true,
           },
         },
         {
           name: "担保人设置",
-          path: "bondsman",
-          component: BondsMan,
+          path: "bondsmancontrol",
+          component: BondsManControl,
           meta: {
             requireAuth: true,
           },
