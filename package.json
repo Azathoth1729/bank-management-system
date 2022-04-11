@@ -1,5 +1,5 @@
 {
-  "name": "bank-management-system",
+  "name": "rescue",
   "version": "0.1.0",
   "private": true,
   "description": "## Project setup ``` npm install ```",
@@ -12,6 +12,7 @@
   "main": "babel.config.js",
   "dependencies": {
     "animate.css": "^4.1.1",
+    "area-data": "^5.0.6",
     "axios": "^0.22.0",
     "core-js": "^3.6.5",
     "echarts": "^5.2.1",

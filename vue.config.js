@@ -1,5 +1,3 @@
-// var webpack = require("webpack")
-
 module.exports = {
   pages: {
     index: {
@@ -32,6 +30,7 @@ module.exports = {
       },
     },
   },
+
   chainWebpack: (config) => {
     config.resolve.alias.set("vue", "@vue/compat");
 
