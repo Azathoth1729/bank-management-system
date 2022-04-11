@@ -9,13 +9,11 @@
         border
       >
         <template slot="extra">
-          <el-button
-            type="primary"
-            size="small"
-            class="product-details"
-            @click="skip"
-            >详情
-          </el-button>
+          <router-link :to="{ name: '产品详情' }">
+            <el-button type="primary" size="small" class="product-details"
+              >详情
+            </el-button>
+          </router-link>
         </template>
         <el-descriptions-item label="产品名">
           {{ product.name }}
@@ -27,12 +25,14 @@
           {{ product.price }}
         </el-descriptions-item>
         <el-descriptions-item label="标签">
-          <el-tag size="small">{{ product.tag }}</el-tag>
+          <el-tag v-for="(tag, index) in product.tags" :key="index" size="small"
+            >{{ tag }}
+          </el-tag>
         </el-descriptions-item>
         <el-descriptions-item
-          label="简介"
+          label="详情"
           :contentStyle="{ 'text-align': 'center' }"
-          >{{ product.intro }}
+          >{{ product.detail }}
         </el-descriptions-item>
       </el-descriptions>
     </template>
@@ -51,11 +51,7 @@ export default {
     };
   },
 
-  methods: {
-    skip() {
-      this.$router.push({ name: "产品详情" });
-    },
-  },
+  methods: {},
 };
 </script>
 

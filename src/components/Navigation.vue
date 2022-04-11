@@ -2,7 +2,7 @@
   <el-row class="container">
     <Header />
     <el-col :span="24" class="main">
-      <Navigator />
+      <Sidebar />
       <section class="content-container">
         <div class="grid-content bg-purple-light">
           <el-col :span="24" class="breadcrumb-container">
@@ -28,13 +28,13 @@
 </template>
 
 <script>
-import Navigator from "./Navigator";
+import Sidebar from "./Sidebar";
 import Header from "./Header";
 
 export default {
   name: "Navigation",
   components: {
-    Navigator,
+    Sidebar,
     Header,
   },
 };

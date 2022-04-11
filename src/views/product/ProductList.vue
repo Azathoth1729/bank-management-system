@@ -10,100 +10,84 @@
       <el-table-column type="expand">
         <template slot-scope="props">
           <el-form label-position="left" inline class="demo-table-expand">
-            <el-form-item label="产品名">
-              <span>{{ props.row.name }}</span>
-            </el-form-item>
             <el-form-item label="产品编号">
-              <span>{{ props.row.id }}</span>
+              {{ props.row.id }}
             </el-form-item>
-            <el-form-item label="投资类型">
-              <span>{{ props.row.type_ }}</span>
+            <el-form-item label="产品名">
+              {{ props.row.name }}
             </el-form-item>
-            <el-form-item label="管理费">
-              <span>{{ props.row.fee }}</span>
+            <el-form-item label="开始时间">
+              {{ props.row.start_date }}
             </el-form-item>
-            <el-form-item label="基金经理">
-              <span>{{ props.row.manager }}</span>
+            <el-form-item label="结束时间">
+              {{ props.row.end_date }}
             </el-form-item>
-            <el-form-item label="产品介绍">
-              <div class="jieshao">
-                <span>{{ props.row.detail }}</span>
-              </div>
+            <el-form-item label="价格">
+              {{ props.row.price }}
+            </el-form-item>
+            <el-form-item label="税率">
+              {{ props.row.rate }}
+            </el-form-item>
+            <el-form-item label="详情">
+              {{ props.row.detail }}
+            </el-form-item>
+            <el-form-item label="标签">
+              {{ props.row.tags }}
+            </el-form-item>
+            <el-form-item label="地区">
+              {{ props.row.area }}
+            </el-form-item>
+            <el-form-item label="库存">
+              {{ props.row.stock }}
+            </el-form-item>
+            <el-form-item label="认证方式">
+              {{ props.row.auth_type }}
+            </el-form-item>
+            <el-form-item label="违约惩罚方式">
+              {{ props.row.penalty }}
+            </el-form-item>
+            <el-form-item label="白名单">
+              {{ props.row.white_list }}
+            </el-form-item>
+            <el-form-item label="担保人">
+              {{ props.row.bondsman }}
             </el-form-item>
           </el-form>
         </template>
       </el-table-column>
 
+      <el-table-column prop="id" label="ID" sortable width="180">
+      </el-table-column>
+      <el-table-column prop="name" label="产品名" sortable width="180">
+      </el-table-column>
       <el-table-column prop="start_date" label="起始日期" sortable width="180">
       </el-table-column>
       <el-table-column prop="end_date" label="结束日期" sortable width="180">
-      </el-table-column>
-      <el-table-column prop="name" label="产品名" sortable width="180">
       </el-table-column>
       <el-table-column prop="price" label="购买价格(元)" sortable width="180">
       </el-table-column>
       <el-table-column prop="rate" label="利率" sortable width="180">
       </el-table-column>
-      <el-table-column prop="intro" label="简介" width="180"> </el-table-column>
-      <el-table-column
-        prop="tag"
-        label="标签"
-        width="100"
-        :filters="[
-          { text: '白酒', value: '白酒' },
-          { text: '新能源', value: '新能源' },
-        ]"
-        :filter-method="filterTag"
-        filter-placement="bottom-end"
-      >
-        <template slot-scope="scope">
+      <el-table-column prop="detail" label="详情" width="180">
+      </el-table-column>
+      <el-table-column prop="tags" label="标签" width="100">
+        <template slot-scope="props">
           <el-tag
-            :type="scope.row.tag === '白酒' ? 'primary' : 'success'"
-            disable-transitions
-            >{{ scope.row.tag }}
+            v-for="(tag, index) in props.row.tags"
+            :key="index"
+            size="small"
+            >{{ tag }}
           </el-tag>
         </template>
       </el-table-column>
-      <!-- <el-table-column
-        prop="detail"
-        label="">
-        <template slot-scope="scope">
-          <el-button
-            size="mini"
-            @click="handleEdit(scope.$index, scope.row)">详情</el-button>
-        </template>
-      </el-table-column> -->
     </el-table>
 
-    <div class="block">
+    <!-- <div class="block">
       <el-pagination background layout="prev, pager, next" :total="50">
       </el-pagination>
-    </div>
+    </div> -->
   </section>
 </template>
-
-<style>
-.block {
-  margin-top: 20px;
-}
-.demo-table-expand {
-  font-size: 0;
-}
-.demo-table-expand label {
-  width: 90px;
-  margin-left: 20px;
-  color: #99a9bf;
-}
-.demo-table-expand .el-form-item {
-  margin-right: 0;
-  margin-bottom: 0;
-  width: 100%;
-}
-.jieshao {
-  margin-left: 110px;
-  margin-top: -40px;
-}
-</style>
 
 <script>
 import products from "../../assets/data/products";
@@ -117,3 +101,24 @@ export default {
   },
 };
 </script>
+
+<style lang="css" scoped>
+.block {
+  margin-top: 20px;
+}
+
+.demo-table-expand {
+  font-size: 0;
+}
+.demo-table-expand label {
+  width: 90px;
+  margin-left: 20px;
+  color: #99a9bf;
+}
+
+.demo-table-expand .el-form-item {
+  margin-right: 0;
+  margin-bottom: 0;
+  width: 100%;
+}
+</style>

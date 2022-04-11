@@ -17,7 +17,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .background {
   /* background: url("../../../public/img/product_background.webp") no-repeat; */
   /* background-color: aquamarine; */
@@ -28,8 +28,4 @@ export default {
   position: fixed;
 }
 
-.back {
-  margin-top: 20px;
-  margin-left: -1100px;
-}
 </style>
