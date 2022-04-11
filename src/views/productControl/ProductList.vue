@@ -2,13 +2,13 @@
   <section>
     <el-table
       :data="products"
-      height="500"
       border
       :default-sort="{ prop: 'start_date', order: 'descending' }"
+      height="500"
       style="width: 100%"
     >
       <el-table-column type="expand">
-        <template slot-scope="props">
+        <template #default="props">
           <el-form label-position="left" inline class="demo-table-expand">
             <el-form-item label="产品编号">
               {{ props.row.id }}
@@ -71,7 +71,7 @@
       <el-table-column prop="detail" label="详情" width="180">
       </el-table-column>
       <el-table-column prop="tags" label="标签" width="100">
-        <template slot-scope="props">
+        <template #default="props">
           <el-tag
             v-for="(tag, index) in props.row.tags"
             :key="index"
@@ -81,28 +81,15 @@
         </template>
       </el-table-column>
     </el-table>
-
-    <!-- <div class="block">
-      <el-pagination background layout="prev, pager, next" :total="50">
-      </el-pagination>
-    </div> -->
   </section>
 </template>
 
-<script>
+<script setup>
 import products from "../../assets/data/products";
-
-export default {
-  name: "ProductList",
-  data() {
-    return {
-      products,
-    };
-  },
-};
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
+
 .block {
   margin-top: 20px;
 }
@@ -115,7 +102,6 @@ export default {
   margin-left: 20px;
   color: #99a9bf;
 }
-
 .demo-table-expand .el-form-item {
   margin-right: 0;
   margin-bottom: 0;

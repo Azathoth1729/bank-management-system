@@ -1,13 +1,13 @@
-const tagType = ["", "success", "info", "warning", "danger"];
+const tagType = ['', 'success', 'info', 'warning', 'danger']
 
 function* genTag() {
-  for (let i = 0; ; i++) yield tagType[i % tagType.length];
+  for (let i = 0; ; i++) yield tagType[i % tagType.length]
 }
 
-let generator = genTag();
+let generator = genTag()
 
 // for (let val of generator) {
 //   console.log(val);
 // }
 
-console.log(generator.next().value);
+console.log(generator.next().value)

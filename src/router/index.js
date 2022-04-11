@@ -1,25 +1,24 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import VueRouter from "vue-router";
-
 import Navigation from "../components/Navigation";
 
 import Login from "../views/login/Login";
+
 import Home from "../views/home/Home";
 import ProductShow from "../views/home/ProductShow";
 
 import CreateProduct from "../views/create/CreateProduct";
 import History from "../views/create/History";
 
-import ProductList from "../views/product/ProductList";
-import AreaControl from "../views/product/AreaControl";
-import WhiteList from "../views/product/WhiteList";
-import StockControl from "../views/product/StockControl";
-import RateControl from "../views/product/RateControl";
-import Authentication from "../views/product/Authentication";
-import ProductTags from "../views/product/ProductTags";
-import PenaltyControl from "../views/product/PenaltyControl";
-import BondsManControl from "../views/product/BondsManControl";
+import ProductList from "../views/productControl/ProductList";
+import AreaControl from "../views/productControl/AreaControl";
+import WhiteList from "../views/productControl/WhiteList";
+import StockControl from "../views/productControl/StockControl";
+import RateControl from "../views/productControl/RateControl";
+import Authentication from "../views/productControl/Authentication";
+import ProductTags from "../views/productControl/ProductTags";
+import PenaltyControl from "../views/productControl/PenaltyControl";
+import BondsManControl from "../views/productControl/BondsManControl";
 
 const routes = [
   {
@@ -31,6 +30,16 @@ const routes = [
     path: "/",
     name: "/",
     redirect: "/login",
+  },
+  {
+    name: "产品详情",
+    path: "/productshow",
+    meta: {
+      hidden: true,
+      requireAuth: true,
+      title: "产品详情",
+    },
+    component: ProductShow,
   },
   {
     name: "首页",
@@ -49,15 +58,6 @@ const routes = [
           title: "产品首页",
         },
         component: Home,
-      },
-      {
-        name: "产品详情",
-        path: "productshow",
-        meta: {
-          requireAuth: true,
-          title: "产品详情",
-        },
-        component: ProductShow,
       },
     ],
   },
@@ -188,7 +188,6 @@ const routes = [
 //         next();
 //     }
 // })
-
 
 const router = createRouter({
   history: createWebHistory(),

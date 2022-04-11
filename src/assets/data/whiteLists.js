@@ -1,4 +1,3 @@
-
-const lists = [[], [], []];
+const lists = [[], [], []]
 
 export default lists

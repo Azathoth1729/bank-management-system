@@ -6,7 +6,7 @@
       <el-table-column prop="operator" label="操作员" width="280">
       </el-table-column>
       <el-table-column prop="operation" label="更改属性">
-        <template slot-scope="scope">
+        <template #default="scope">
           <el-tag
             class="xl"
             :key="tag"
@@ -58,5 +58,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

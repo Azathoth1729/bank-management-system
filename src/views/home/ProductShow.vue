@@ -5,16 +5,16 @@
 </template>
 
 <script>
-import GoBack from "../../components/GoBack";
+import GoBack from '../../components/GoBack'
 
 export default {
-  name: "ProductShow",
+  name: 'ProductShow',
   components: { GoBack },
   data() {
-    return {};
+    return {}
   },
   methods: {},
-};
+}
 </script>
 
 <style scoped>
@@ -27,5 +27,4 @@ export default {
   background-size: cover;
   position: fixed;
 }
-
 </style>

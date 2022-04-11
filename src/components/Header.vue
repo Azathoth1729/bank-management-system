@@ -1,108 +1,89 @@
 <template>
-  <el-col :span="24" class="header">
-    <el-col :span="10" class="logo logo-width">
-      {{ sysName }}
-    </el-col>
-    <el-col :span="4" class="userinfo">
-      <el-dropdown>
-        <span class="el-dropdown-link userinfo-inner"
-          ><img :src="this.sysUserAvatar" />
+  <div class="header">
+    <div class="logo">{{ sysName }}</div>
+    <div class="header-right">
+      <!-- 用户名下拉菜单 -->
+      <el-dropdown class="user-name" trigger="click" @command="handleCommand">
+        <!-- 用户头像 -->
+        <span class="el-dropdown-link">
+          <img class="user-avator" :src="sysUserAvatar" />
         </span>
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item @click.native="logout">退出登录</el-dropdown-item>
-        </el-dropdown-menu>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item command="logout">退出登录</el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
       </el-dropdown>
-    </el-col>
-  </el-col>
+    </div>
+  </div>
 </template>
 
-<script>
-export default {
-  name: "Header",
-  data() {
-    return {
-      sysName: "银行后台管理系统",
-      sysUserAvatar: require("../assets/icon.png"),
-    };
-  },
-  mounted() {
-    let username = localStorage.getItem("username");
-    console.log(username);
-    if (username !== "") {
-      this.sysUserName = username || "";
-    }
-  },
-  methods: {
-    //退出登录
-    logout() {
-      this.$confirm("确认退出吗?", "提示", {})
-        .then(() => {
-          sessionStorage.removeItem("isLogin");
-          sessionStorage.removeItem("username");
-          sessionStorage.removeItem("password");
-          this.$router.push("/login");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-  },
+<script setup>
+import { onMounted } from "vue";
+import { useRouter } from "vue-router";
+import { ElMessageBox } from "element-plus";
+
+onMounted(() => {
+  // let username = localStorage.getItem("username");
+  // console.log(username);
+  // if (username !== "") {
+  //   let sysUserName = username || "";
+  // }
+});
+
+const sysName = "银行后台管理系统";
+const sysUserAvatar = require("../assets/icon.png");
+
+const router = useRouter();
+
+const handleCommand = (command) => {
+  if (command == "logout") {
+    ElMessageBox.confirm("确认退出吗?", "提示", {})
+      .then(() => {
+        sessionStorage.removeItem("isLogin");
+        sessionStorage.removeItem("username");
+        sessionStorage.removeItem("password");
+        router.push("/login");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .header {
   position: absolute;
-  top: 0;
-  bottom: 0;
+  padding-top: 20px;
+  box-sizing: border-box;
   width: 100%;
-  height: 60px;
-  line-height: 60px;
-  background: #E5E2DF;
-  /* color: ; */
-  /* border-bottom: 0.5px solid rgb(195, 206, 203); */
-}
-
-.header .userinfo {
-  text-align: right;
-  padding-right: 35px;
-  float: right;
-}
-
-.header .userinfo .userinfo-inner {
-  cursor: pointer;
-}
-
-.header .userinfo .userinfo-inner img {
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  margin: 10px 0px 10px 10px;
-  float: right;
-}
-
-.header .logo {
-  height: 60px;
+  height: 100px;
   font-size: 22px;
-  padding-left: 20px;
-  padding-right: 20px;
-  /* border-color: rgba(238, 241, 146, 0.3); */
-  border-right-width: 1px;
-  /* border-right-style: solid; */
-}
+  background: #e5e2df;
 
-.header .logo img {
-  width: 40px;
-  float: left;
-  margin: 10px 10px 10px 18px;
-}
+  .logo {
+    float: left;
+    width: 250px;
+    margin-top: 10px;
+    margin-left: 20px;
+    line-height: 70px;
+  }
 
-.header .logo .txt {
-  color: #fff;
-}
+  .header-right {
+    float: right;
+    padding-right: 50px;
+    display: flex;
+    height: 70px;
+    align-items: center;
 
-.header .logo-width {
-  width: 230px;
+    .user-avator {
+      display: block;
+      width: 40px;
+      height: 40px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+  }
 }
-
 </style>

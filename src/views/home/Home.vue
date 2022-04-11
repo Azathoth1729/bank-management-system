@@ -5,14 +5,12 @@
         :key="product.id"
         v-for="product in products"
         :title="product.name"
-        :column="3"
+        :column="4"
         border
       >
-        <template slot="extra">
+        <template #extra>
           <router-link :to="{ name: '产品详情' }">
-            <el-button type="primary" size="small" class="product-details"
-              >详情
-            </el-button>
+            <el-button type="primary" class="details-btn"> 详情 </el-button>
           </router-link>
         </template>
         <el-descriptions-item label="产品名">
@@ -30,7 +28,7 @@
           </el-tag>
         </el-descriptions-item>
         <el-descriptions-item
-          label="详情"
+          label="产品说明"
           :contentStyle="{ 'text-align': 'center' }"
           >{{ product.detail }}
         </el-descriptions-item>
@@ -56,7 +54,7 @@ export default {
 </script>
 
 <style scoped>
-.product-details {
-  margin-top: 20px;
+.details-btn {
+  margin: 20px;
 }
 </style>

@@ -1,85 +1,68 @@
 <template>
-  <aside class="menu-expanded">
+  <div class="sidebar">
     <!--导航菜单-->
     <el-menu
+      class="sidebar-el-menu"
       background-color="#E5E2DF"
       text-color=""
       active-text-color="#D39938"
       ref="nav"
       :unique-opened="false"
-      :default-active="$route.path"
+      :default-active="router.path"
       :router="true"
-      class="el-menu-vertical-demo"
     >
-      <template v-for="(item, index) in navRoute">
-        <el-submenu
+      <template v-for="(routeItem, index) in navRoutes">
+        <el-sub-menu
           :index="index + ''"
-          v-if="!item.leaf && index !== 0 && index !== 1"
+          v-if="!routeItem.leaf && index !== 0 && index !== 1"
           :key="index"
         >
           <template v-slot:title>
             <div class="title">
-              <p style="font-size: 17px">{{ item.name }}</p>
+              <p style="font-size: 17px">{{ routeItem.name }}</p>
             </div>
           </template>
-          <template v-for="child in item.children">
+          <template v-for="child in routeItem.children">
             <el-menu-item
-              :index="item.path + '/' + child.path"
+              :index="routeItem.path + '/' + child.path"
+              v-if="true"
               :key="child.path"
-              v-if="!child.hidden"
             >
               <p>{{ child.name }}</p>
             </el-menu-item>
           </template>
-        </el-submenu>
+        </el-sub-menu>
       </template>
     </el-menu>
-  </aside>
+  </div>
 </template>
 
-<script>
-export default {
-  name: "Sidebar",
-  data() {
-    return {
-      navRoute: this.$router.options.routes,
-    };
-  },
+<script setup>
+import { useRouter } from "vue-router";
 
-  methods: {
-    handleSelect(key, keyPath) {
-      console.log(key, keyPath);
-    },
-  },
+const router = useRouter();
 
-  computed: {},
-};
+const navRoutes = router.options.routes;
 </script>
 
 <style scoped>
-aside {
-  flex: 0 0 230px;
-  width: 230px;
+.sidebar {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 70px;
+  bottom: 0;
+  overflow-y: scroll;
 }
 
-aside .el-menu {
+.sidebar::-webkit-scrollbar {
+  width: 0;
+}
+.sidebar-el-menu {
+  width: 200px;
+}
+
+.sidebar > ul {
   height: 100%;
 }
-
-.menu-collapsed {
-  flex: 0 0 60px;
-  width: 60px;
-}
-
-.menu-expanded {
-  flex: 0 0 230px;
-  width: 230px;
-  overflow-y: auto; /* 实现超出部分可以加滚动条*/
-}
-
-/* .nav-children {
-  color: #ffffff; 
-   text-align: center;
-  font-size: small; 
-} */
 </style>
