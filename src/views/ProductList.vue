@@ -9,7 +9,7 @@
     >
       <el-table-column type="expand">
         <template #default="props">
-          <el-form label-position="left" inline class="demo-table-expand">
+          <el-form label-position="left" :inline="true" class="product-details">
             <el-form-item label="产品编号">
               {{ props.row.id }}
             </el-form-item>
@@ -72,12 +72,7 @@
       </el-table-column>
       <el-table-column prop="tags" label="标签" width="100">
         <template #default="props">
-          <el-tag
-            v-for="(tag, index) in props.row.tags"
-            :key="index"
-            size="small"
-            >{{ tag }}
-          </el-tag>
+          <el-tag :key="index" size="small">{{ props.row.tag }} </el-tag>
         </template>
       </el-table-column>
     </el-table>
@@ -89,22 +84,16 @@ import products from "../assets/data/products";
 </script>
 
 <style lang="scss" scoped>
+.product-details {
+  margin-left: 55px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 
-.block {
-  margin-top: 20px;
-}
+  .el-form-item {
+    margin-right: 0;
 
-.demo-table-expand {
-  font-size: 0;
-}
-.demo-table-expand label {
-  width: 90px;
-  margin-left: 20px;
-  color: #99a9bf;
-}
-.demo-table-expand .el-form-item {
-  margin-right: 0;
-  margin-bottom: 0;
-  width: 100%;
+    margin-bottom: 0;
+    width: 50%;
+  }
 }
 </style>

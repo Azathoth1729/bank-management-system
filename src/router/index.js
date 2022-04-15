@@ -57,6 +57,14 @@ const routes = [
     component: () => import("../views/create/Step2"),
   },
 
+  {
+    name: "产品添加-第三步",
+    path: "/create/create_product/3",
+    meta: {
+      requireAuth: true,
+    },
+    component: () => import("../views/create/Step3"),
+  },
 
   // productControl
   {
@@ -101,7 +109,7 @@ const routes = [
   },
   {
     name: "产品标签",
-    path: "/produc/tags_control",
+    path: "/produc/produc_tags",
     component: ProductTags,
     meta: {
       requireAuth: true,

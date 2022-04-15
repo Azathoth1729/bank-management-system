@@ -1,5 +1,5 @@
 <template>
-  <el-button type="info" @click="router.back()" class="go-back">{{
+  <el-button :type="btnType" @click="router.back()" class="go-back">{{
     text
   }}</el-button>
 </template>
@@ -14,6 +14,10 @@ const props = defineProps({
   text: {
     type: String,
     default: "返回",
+  },
+  btnType: {
+    type: String,
+    default: "info",
   },
 });
 </script>

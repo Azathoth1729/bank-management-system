@@ -1,5 +1,5 @@
 <template>
-  <el-button type="primary" @click="() => router.push(url)" class="go-next">{{
+  <el-button :type="btnType" @click="() => router.push(url)" class="go-next">{{
     text
   }}</el-button>
 </template>
@@ -13,6 +13,12 @@ const props = defineProps({
   text: {
     type: String,
     default: "下一步",
+  },
+
+  btnType: {
+    type: String,
+    default: "primary",
+
   },
   url: {
     type: String,

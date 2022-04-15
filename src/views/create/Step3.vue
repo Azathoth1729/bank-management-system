@@ -1,8 +1,8 @@
 <template>
   <el-input v-model="input" placeholder="Please input" />
   {{ input }}
-  <GoNext text="下一步" btn-type="primary" url="/create/create_product/3" />
-  <GoBack text="上一步" btn-type="primary" />
+  <GoNext text="下一步" btn-type="primary"/>
+  <GoBack text="上一步" btn-type="primary"/>
   <el-button type="danger" @click="handleCancel">取消</el-button>
 </template>
 

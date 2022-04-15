@@ -71,7 +71,7 @@
     </el-form-item>
   </el-form>
 
-  <GoNext url="/create/create_product/2" />
+  <GoNext text="下一步" btn-type="primary" url="/create/create_product/2" />
   <el-button type="danger" @click="handleCancel">取消</el-button>
 </template>
 
@@ -102,10 +102,6 @@ const form = reactive({
 });
 
 const router = useRouter();
-
-// const handleLog = () => {
-//   console.log(form);
-// };
 
 const handleCancel = () => {};
 </script>

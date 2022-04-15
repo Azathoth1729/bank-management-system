@@ -82,7 +82,7 @@ const navItems = [
         title: "信息认证",
       },
       {
-        index: "/product/tags_control",
+        index: "/product/produc_tags",
         title: "产品标签",
       },
       {
