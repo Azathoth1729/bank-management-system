@@ -1,16 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import Navigation from "../components/Navigation";
-
-import Login from "../views/login/Login";
-
-import Home from "../views/home/Home";
-import ProductShow from "../views/home/ProductShow";
-
-import CreateProduct from "../views/create/CreateProduct";
-import History from "../views/create/History";
-
-import ProductList from "../views/productControl/ProductList";
 import AreaControl from "../views/productControl/AreaControl";
 import WhiteList from "../views/productControl/WhiteList";
 import StockControl from "../views/productControl/StockControl";
@@ -24,7 +13,7 @@ const routes = [
   {
     path: "/login",
     name: "login",
-    component: Login,
+    component: () => import("../views/login/Login"),
   },
   {
     path: "/",
@@ -32,140 +21,120 @@ const routes = [
     redirect: "/login",
   },
   {
-    name: "产品详情",
-    path: "/productshow",
-    meta: {
-      hidden: true,
-      requireAuth: true,
-      title: "产品详情",
-    },
-    component: ProductShow,
-  },
-  {
-    name: "首页",
+    name: "产品首页",
     path: "/home",
-    component: Navigation,
     meta: {
       requireAuth: true,
-      title: "首页",
     },
-    children: [
-      {
-        name: "产品首页",
-        path: "products",
-        meta: {
-          requireAuth: true,
-          title: "产品首页",
-        },
-        component: Home,
-      },
-    ],
+    component: () => import("../views/home/Home"),
   },
   {
-    name: "创建业务",
-    path: "/create",
-    component: Navigation,
+    name: "productshow",
+    path: "/productshow/:id",
+    props: (route) => ({ ...route.params, id: parseInt(route.params.id) }),
     meta: {
       requireAuth: true,
     },
-    children: [
-      {
-        name: "产品添加",
-        path: "create_product",
-        meta: {
-          requireAuth: true,
-        },
-        component: CreateProduct,
-      },
+    component: () => import("../views/home/ProductShow"),
+  },
 
-    ],
-  },
+  // product creation
   {
-    name: "业务信息",
-    path: "/product",
-    component: Navigation,
+    name: "产品添加-第一步",
+    path: "/create/create_product/1",
     meta: {
       requireAuth: true,
     },
-    children: [
-      {
-        name: "地区控制",
-        path: "areaControl",
-        component: AreaControl,
-        meta: {
-          requireAuth: true,
-        },
-      },
-      {
-        name: "白名单信息",
-        path: "whitelist",
-        component: WhiteList,
-        meta: {
-          requireAuth: true,
-        },
-      },
-      {
-        name: "库存控制",
-        path: "stock_control",
-        component: StockControl,
-        meta: {
-          requireAuth: true,
-        },
-      },
-      {
-        name: "利率控制",
-        path: "rate_control",
-        component: RateControl,
-        meta: {
-          requireAuth: true,
-        },
-      },
-      {
-        name: "信息认证",
-        path: "authentication",
-        component: Authentication,
-        meta: {
-          requireAuth: true,
-        },
-      },
-      {
-        name: "产品标签",
-        path: "tagsControl",
-        component: ProductTags,
-        meta: {
-          requireAuth: true,
-        },
-      },
-      {
-        name: "违约控制",
-        path: "penaltyControl",
-        component: PenaltyControl,
-        meta: {
-          requireAuth: true,
-        },
-      },
-      {
-        name: "担保人设置",
-        path: "bondsmanControl",
-        component: BondsManControl,
-        meta: {
-          requireAuth: true,
-        },
-      },
-    ],
+    component: () => import("../views/create/Step1"),
+  },
+
+  {
+    name: "产品添加-第二步",
+    path: "/create/create_product/2",
+    meta: {
+      requireAuth: true,
+    },
+    component: () => import("../views/create/Step2"),
+  },
+
+
+  // productControl
+  {
+    name: "地区控制",
+    path: "/product/area_control",
+    component: AreaControl,
+    meta: {
+      requireAuth: true,
+    },
+  },
+  {
+    name: "白名单信息",
+    path: "/produc/white_list",
+    component: WhiteList,
+    meta: {
+      requireAuth: true,
+    },
+  },
+  {
+    name: "库存控制",
+    path: "/product/stock_control",
+    component: StockControl,
+    meta: {
+      requireAuth: true,
+    },
+  },
+  {
+    name: "利率控制",
+    path: "/produc/rate_control",
+    component: RateControl,
+    meta: {
+      requireAuth: true,
+    },
+  },
+  {
+    name: "信息认证",
+    path: "/produc/authentication",
+    component: Authentication,
+    meta: {
+      requireAuth: true,
+    },
+  },
+  {
+    name: "产品标签",
+    path: "/produc/tags_control",
+    component: ProductTags,
+    meta: {
+      requireAuth: true,
+    },
+  },
+  {
+    name: "违约控制",
+    path: "/produc/penalty_control",
+    component: PenaltyControl,
+    meta: {
+      requireAuth: true,
+    },
+  },
+  {
+    name: "担保人设置",
+    path: "/produc/bondsman_control",
+    component: BondsManControl,
+    meta: {
+      requireAuth: true,
+    },
   },
   {
     name: "产品信息",
-    path: "product_info",
+    path: "/product_info",
+    component: () => import("../views/ProductList"),
     meta: {
       requireAuth: true,
     },
-    component: ProductList,
   },
   {
     name: "操作记录",
-    path: "history",
-    component: History,
+    path: "/history",
+    component: () => import("../views/History"),
     meta: {
       requireAuth: true,
     },

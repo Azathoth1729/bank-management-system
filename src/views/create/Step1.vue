@@ -1,0 +1,104 @@
+<template>
+  <el-form :model="form" label-width="80px">
+    <el-form-item label="产品编号">
+      <el-input
+        v-model.number="form.id"
+        placeholder="请输入产品编号(9位数字)"
+      ></el-input>
+    </el-form-item>
+
+    <el-form-item label="起始时间">
+      <el-col :span="11">
+        <el-date-picker
+          type="date"
+          placeholder="选择日期"
+          v-model="form.start_date"
+          style="width: 100%"
+        ></el-date-picker>
+      </el-col>
+    </el-form-item>
+
+    <el-form-item label="结束时间">
+      <el-col :span="11">
+        <el-date-picker
+          type="date"
+          placeholder="选择日期"
+          v-model="form.end_date"
+          style="width: 100%"
+        ></el-date-picker>
+      </el-col>
+    </el-form-item>
+
+    <el-form-item label="产品价格">
+      <el-input
+        v-model.number="form.price"
+        placeholder="请输入产品价格(小数)"
+      ></el-input>
+    </el-form-item>
+    <el-form-item label="产品利率">
+      <el-input
+        v-model.number="form.rate"
+        placeholder="请输入产品利率(小数,=>0)"
+      ></el-input>
+    </el-form-item>
+    <el-form-item label="产品详情">
+      <el-input
+        type="textarea"
+        v-model="form.detail"
+        placeholder="产品的详细描述(100字以内)"
+      ></el-input>
+    </el-form-item>
+
+    <el-form-item label="产品类型">
+      <el-select v-model="form.tag" placeholder="请选择基金所属类型">
+        <el-option label="白酒" value="白酒"></el-option>
+        <el-option label="军工" value="军工"></el-option>
+        <el-option label="医疗" value="医疗"></el-option>
+        <el-option label="服装" value="服装"></el-option>
+        <el-option label="汽车" value="汽车"></el-option>
+        <el-option label="化工" value="化工"></el-option>
+        <el-option label="电力" value="电力"></el-option>
+        <el-option label="半导体" value="半导体"></el-option>
+        <el-option label="新能源" value="新能源"></el-option>
+      </el-select>
+    </el-form-item>
+  </el-form>
+
+  <GoNext url="/create/create_product/2" />
+  <el-button type="danger" @click="handleCancel">取消</el-button>
+</template>
+
+<script setup>
+import GoNext from "../../components/GoNext";
+
+import { reactive } from "vue";
+import { useRouter } from "vue-router";
+
+const form = reactive({
+  id: "",
+  name: "",
+  start_date: "",
+  end_date: "",
+  price: "",
+  rate: "",
+  detail: "",
+  tag: "",
+
+  // stock: "",
+  // payed_stock: "",
+  // white_list: "",
+  // penalty: "",
+
+  // area: [],
+  // bondsman: [],
+  // auth_type: [],
+});
+
+const router = useRouter();
+
+// const handleLog = () => {
+//   console.log(form);
+// };
+
+const handleCancel = () => {};
+</script>

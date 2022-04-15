@@ -1,6 +1,5 @@
 <template>
   <div class="sidebar">
-    <!--导航菜单-->
     <el-menu
       class="sidebar-el-menu"
       background-color="#E5E2DF"
@@ -45,15 +44,15 @@ const onRoutes = computed(() => {
 
 const navItems = [
   {
-    index: "/home/products",
+    index: "/home",
     title: "产品首页",
   },
   {
     index: "/create",
-    title: "创建业务",
+    title: "产品创建",
     subs: [
       {
-        index: "/create/create_product",
+        index: "/create/create_product/1",
         title: "产品添加",
       },
     ],
@@ -63,11 +62,11 @@ const navItems = [
     title: "产品修改",
     subs: [
       {
-        index: "/product/areaControl",
+        index: "/product/area_control",
         title: "地区控制",
       },
       {
-        index: "/product/whitelist",
+        index: "/product/white_list",
         title: "白名单信息",
       },
       {
@@ -83,15 +82,15 @@ const navItems = [
         title: "信息认证",
       },
       {
-        index: "/product/tagsControl",
+        index: "/product/tags_control",
         title: "产品标签",
       },
       {
-        index: "/product/penaltyControl",
+        index: "/product/penalty_control",
         title: "违约控制",
       },
       {
-        index: "/product/bondsmanControl",
+        index: "/product/bondsman_control",
         title: "担保人设置",
       },
     ],

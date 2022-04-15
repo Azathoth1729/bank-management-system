@@ -88,6 +88,7 @@ export default {
         ],
       },
     ]
+    
     return {
       address1: [],
       data: JSON.parse(JSON.stringify(data)),

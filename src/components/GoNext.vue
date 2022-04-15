@@ -1,11 +1,10 @@
 <template>
-  <el-button type="info" @click="router.back()" class="go-back">{{
+  <el-button type="primary" @click="() => router.push(url)" class="go-next">{{
     text
   }}</el-button>
 </template>
 
 <script setup>
-import { Back as ElIconBack } from "@element-plus/icons-vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
@@ -13,7 +12,10 @@ const router = useRouter();
 const props = defineProps({
   text: {
     type: String,
-    default: "返回",
+    default: "下一步",
+  },
+  url: {
+    type: String,
   },
 });
 </script>

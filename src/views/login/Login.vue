@@ -48,6 +48,7 @@
 
 <script>
 import { request } from "../../network/request";
+import { useRouter } from "vue-router";
 
 export default {
   data() {

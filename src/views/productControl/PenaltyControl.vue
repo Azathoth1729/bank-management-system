@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import { ArrowDown as ElIconArrowDown } from '@element-plus/icons'
+import { ArrowDown as ElIconArrowDown } from '@element-plus/icons-vue'
 export default {
   components: {
     ElIconArrowDown,

@@ -85,7 +85,7 @@
 </template>
 
 <script setup>
-import products from "../../assets/data/products";
+import products from "../assets/data/products";
 </script>
 
 <style lang="scss" scoped>

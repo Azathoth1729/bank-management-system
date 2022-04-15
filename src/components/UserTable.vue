@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { Edit as ElIconEdit, Delete as ElIconDelete } from '@element-plus/icons'
+import { Edit as ElIconEdit, Delete as ElIconDelete } from '@element-plus/icons-vue'
 export default {
   data() {
     return {
