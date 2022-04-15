@@ -7,6 +7,13 @@
       ></el-input>
     </el-form-item>
 
+    <el-form-item label="产品名称">
+      <el-input
+        v-model.number="form.name"
+        placeholder="请输入产品名(20字以内)"
+      ></el-input>
+    </el-form-item>
+    
     <el-form-item label="起始时间">
       <el-col :span="11">
         <el-date-picker
