@@ -31,30 +31,22 @@ const currentRoute = computed(() => {
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: -180px;
-}
+@import "./assets/css/main.css";
+
 
 .main-container {
   position: absolute;
-  left: 220px;
+  left: 198px;
   right: 0;
   top: 70px;
   bottom: 0;
   padding-bottom: 30px;
-  -webkit-transition: left 0.3s ease-in-out;
-  transition: left 0.3s ease-in-out;
+  background-color: white;
 }
 
 .breadcrumb-container {
   padding: 5px;
   margin: 5px;
-
   h4 {
     margin: 20px;
   }

@@ -23,14 +23,6 @@ import { onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { ElMessageBox } from "element-plus";
 
-onMounted(() => {
-  // let username = localStorage.getItem("username");
-  // console.log(username);
-  // if (username !== "") {
-  //   let sysUserName = username || "";
-  // }
-});
-
 const sysName = "银行后台管理系统";
 const sysUserAvatar = require("../assets/icon.png");
 
@@ -55,18 +47,17 @@ const handleCommand = (command) => {
 <style lang="scss" scoped>
 .header {
   position: absolute;
-  padding-top: 20px;
+  top: 0px;
+  left: 0px;
   box-sizing: border-box;
   width: 100%;
-  height: 100px;
+  height: 70px;
   font-size: 22px;
   background: #e5e2df;
 
   .logo {
     float: left;
     width: 250px;
-    margin-top: 10px;
-    margin-left: 20px;
     line-height: 70px;
   }
 
