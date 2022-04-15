@@ -6,43 +6,105 @@
       background-color="#E5E2DF"
       text-color=""
       active-text-color="#D39938"
-      ref="nav"
-      :unique-opened="false"
-      :default-active="router.path"
-      :router="true"
+      :default-active="onRoutes"
+      unique-opened
+      router
     >
-      <template v-for="(routeItem, index) in navRoutes">
-        <el-sub-menu
-          :index="index + ''"
-          v-if="!routeItem.leaf && index !== 0 && index !== 1"
-          :key="index"
-        >
-          <template v-slot:title>
-            <div class="title">
-              <p style="font-size: 17px">{{ routeItem.name }}</p>
-            </div>
-          </template>
-          <template v-for="child in routeItem.children">
-            <el-menu-item
-              :index="routeItem.path + '/' + child.path"
-              v-if="true"
-              :key="child.path"
-            >
-              <p>{{ child.name }}</p>
-            </el-menu-item>
-          </template>
-        </el-sub-menu>
+      <template v-for="item in navItems" :key="item.index">
+        <template v-if="item.subs">
+          <el-sub-menu :index="item.index">
+            <template #title>
+              <span>{{ item.title }}</span>
+            </template>
+            <template v-for="subItem in item.subs" :key="subItem.index">
+              <el-menu-item :index="subItem.index">
+                <template #title>{{ subItem.title }}</template>
+              </el-menu-item>
+            </template>
+          </el-sub-menu>
+        </template>
+        <template v-else>
+          <el-menu-item :index="item.index">
+            <template #title>{{ item.title }}</template>
+          </el-menu-item>
+        </template>
       </template>
     </el-menu>
   </div>
 </template>
 
 <script setup>
-import { useRouter } from "vue-router";
+import { computed } from "vue";
+import { useRoute } from "vue-router";
 
-const router = useRouter();
+const route = useRoute();
 
-const navRoutes = router.options.routes;
+const onRoutes = computed(() => {
+  return route.path;
+});
+
+const navItems = [
+  {
+    index: "/home/products",
+    title: "产品首页",
+  },
+  {
+    index: "/create",
+    title: "创建业务",
+    subs: [
+      {
+        index: "/create/create_product",
+        title: "产品添加",
+      },
+    ],
+  },
+  {
+    index: "/product",
+    title: "产品修改",
+    subs: [
+      {
+        index: "/product/areaControl",
+        title: "地区控制",
+      },
+      {
+        index: "/product/whitelist",
+        title: "白名单信息",
+      },
+      {
+        index: "/product/stock_control",
+        title: "库存控制",
+      },
+      {
+        index: "/product/rate_control",
+        title: "利率控制",
+      },
+      {
+        index: "/product/authentication",
+        title: "信息认证",
+      },
+      {
+        index: "/product/tagsControl",
+        title: "产品标签",
+      },
+      {
+        index: "/product/penaltyControl",
+        title: "违约控制",
+      },
+      {
+        index: "/product/bondsmanControl",
+        title: "担保人设置",
+      },
+    ],
+  },
+  {
+    index: "/product_info",
+    title: "产品信息",
+  },
+  {
+    index: "/history",
+    title: "操作记录",
+  },
+];
 </script>
 
 <style scoped>

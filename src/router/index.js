@@ -77,14 +77,7 @@ const routes = [
         },
         component: CreateProduct,
       },
-      {
-        name: "操作记录",
-        path: "history",
-        component: History,
-        meta: {
-          requireAuth: true,
-        },
-      },
+
     ],
   },
   {
@@ -95,14 +88,6 @@ const routes = [
       requireAuth: true,
     },
     children: [
-      {
-        name: "产品信息",
-        path: "product_info",
-        meta: {
-          requireAuth: true,
-        },
-        component: ProductList,
-      },
       {
         name: "地区控制",
         path: "areaControl",
@@ -145,7 +130,7 @@ const routes = [
       },
       {
         name: "产品标签",
-        path: "product_tags",
+        path: "tagsControl",
         component: ProductTags,
         meta: {
           requireAuth: true,
@@ -161,13 +146,29 @@ const routes = [
       },
       {
         name: "担保人设置",
-        path: "bondsmancontrol",
+        path: "bondsmanControl",
         component: BondsManControl,
         meta: {
           requireAuth: true,
         },
       },
     ],
+  },
+  {
+    name: "产品信息",
+    path: "product_info",
+    meta: {
+      requireAuth: true,
+    },
+    component: ProductList,
+  },
+  {
+    name: "操作记录",
+    path: "history",
+    component: History,
+    meta: {
+      requireAuth: true,
+    },
   },
 ];
 

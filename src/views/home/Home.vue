@@ -2,8 +2,8 @@
   <aside class="menu-expanded">
     <template>
       <el-descriptions
-        :key="product.id"
         v-for="product in products"
+        :key="product.id"
         :title="product.name"
         :column="4"
         border
@@ -37,20 +37,8 @@
   </aside>
 </template>
 
-<script>
+<script setup>
 import products from "../../assets/data/products";
-
-export default {
-  name: "Home",
-
-  data() {
-    return {
-      products,
-    };
-  },
-
-  methods: {},
-};
 </script>
 
 <style scoped>
