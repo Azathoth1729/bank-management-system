@@ -10,20 +10,15 @@
           border
         >
           <template #extra>
-            <!-- <GoNext
-            class="details-btn"
-            text="详情"
-            btn-type="primary"
-            :router-name="`/create/create_product/${product.id}`"
-          /> -->
-            <router-link
+            <GoNext
+              class="details-btn"
+              text="详情"
+              btn-type="primary"
               :to="{
                 name: '产品详情',
                 params: { id: product.id },
               }"
-            >
-              <el-button type="primary" class="details-btn"> 详情 </el-button>
-            </router-link>
+            />
           </template>
           <el-descriptions-item label="产品名">
             {{ product.name }}

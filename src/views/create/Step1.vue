@@ -76,7 +76,9 @@
         <GoNext
           text="下一步"
           btn-type="primary"
-          router-name="/create/create_product/2"
+          :to="{
+            path: '/create/create_product/2',
+          }"
         />
         <el-button type="danger" @click="() => handleCancel(form)"
           >取消</el-button

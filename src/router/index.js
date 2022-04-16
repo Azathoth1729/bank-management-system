@@ -29,33 +29,36 @@ const routes = [
     component: () => import("../views/home/ProductShow"),
   },
 
+  
   // product creation
   {
     name: "产品添加-第一步",
     path: "/create/create_product/1",
+    props: (route) => ({ ...route.params }),
     meta: {
       requireAuth: true,
     },
     component: () => import("../views/create/Step1"),
   },
-
   {
     name: "产品添加-第二步",
     path: "/create/create_product/2",
+    props: (route) => ({ ...route.params }),
     meta: {
       requireAuth: true,
     },
     component: () => import("../views/create/Step2"),
   },
-
   {
     name: "产品添加-第三步",
     path: "/create/create_product/3",
+    props: (route) => ({ ...route.params }),
     meta: {
       requireAuth: true,
     },
     component: () => import("../views/create/Step3"),
   },
+
 
   // productControl
   {
