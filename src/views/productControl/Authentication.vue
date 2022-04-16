@@ -1,144 +1,65 @@
 <template>
-    <el-table :data="tableData" stripe style="width: 100%">
-      <el-table-column prop="number" label="产品编号" width="380">
-      </el-table-column>
-      <el-table-column prop="name" label="产品名" width="380">
-      </el-table-column>
-      <el-table-column
-        prop="way"
-        label="认证方式"
-        :filters="[
-          { text: '身份证', value: 1 },
-          { text: '护照', value: 2 },
-          { text: '社保卡', value: 3 },
-        ]"
-        :filter-method="filterTag"
-        filter-placement="bottom-end"
-      >
-        <template #default="scope">
-          <el-dropdown class="xl" @command="change">
-            <span class="el-dropdown-link">
-              认证方式
-              <el-icon class="el-icon--right"><el-icon-arrow-down /></el-icon>
-            </span>
-            <template #dropdown>
-              <el-dropdown-menu>
-                <el-dropdown-item
-                  :command="beforeHandleCommand(scope.$index, 1)"
-                  >身份证</el-dropdown-item
-                >
-                <el-dropdown-item
-                  :command="beforeHandleCommand(scope.$index, 2)"
-                  >护照</el-dropdown-item
-                >
-                <el-dropdown-item
-                  :command="beforeHandleCommand(scope.$index, 3)"
-                  >社保卡</el-dropdown-item
-                >
-              </el-dropdown-menu>
-            </template>
-          </el-dropdown>
-        </template>
-      </el-table-column>
-    </el-table>
-    <el-button type="success" round class="ad" @click="handleAdd"
-      >提交数据
-    </el-button>
+  <el-table
+    :data="products"
+    :default-sort="{ prop: 'name', order: 'ascending' }"
+    border
+    style="width: 100%"
+  >
+    <el-table-column prop="id" label="ID" sortable> </el-table-column>
+    <el-table-column prop="name" label="产品名" sortable> </el-table-column>
+    <el-table-column prop="detail" label="详情"> </el-table-column>
+    <el-table-column label="身份认证">
+      <template #default="scope">
+        {{ stringifyAuthType(scope.row.auth_type) }}
+      </template>
+    </el-table-column>
+
+    <el-table-column label="修改">
+      <template #default="scope">
+        <el-select
+          @change="handleEdit($event, scope.row)"
+          v-model.number="auth_types[scope.$index]"
+          placeholder="身份认证信息"
+        >
+          <el-option v-if="scope.row.auth_type !== 0" label="无" value="0" />
+          <el-option
+            v-if="scope.row.auth_type !== 1"
+            label="身份证"
+            value="1"
+          />
+          <el-option v-if="scope.row.auth_type !== 2" label="护照" value="2" />
+        </el-select>
+      </template>
+    </el-table-column>
+  </el-table>
+
+  <el-button type="primary" class="done-btn" @click="handleSubmit">
+    提交修改
+  </el-button>
 </template>
 
 <script setup>
-import { ArrowDown as ElIconArrowDown } from "@element-plus/icons-vue";
-const tableData = [
-  {
-    number: "235611231",
-    name: "大秦科技基金",
-    way: 1,
-  },
-  {
-    number: "235611231",
-    name: "大秦科技基金",
-    way: 2,
-  },
-  {
-    number: "235611231",
-    name: "大秦科技基金",
-    way: 3,
-  },
-  {
-    number: "235611231",
-    name: "大秦科技基金",
-    way: 2,
-  },
-  {
-    number: "235611231",
-    name: "大秦科技基金",
-    way: 3,
-  },
-];
+import { ref, reactive } from "vue";
+import { getAllProducts, getProductById } from "../../assets/data/products";
+import {
+  stringifyObj,
+  stringifyArea,
+  stringifyAuthType,
+} from "../../utils/util";
 
-const beforeHandleCommand = (beforeHandleCommandindex, command) => {
-  return {
-    index: index,
-    command: command,
-  };
+const products = getAllProducts();
+
+const auth_types = reactive([]);
+
+const handleEdit = (event, product) => {
+  product.auth_type = parseInt(event);
 };
 
-const change = (command) => {
-  this.tableData[command.index].way = command.command;
-};
-
-const filterTag = (value, row) => {
-  return row.way === value;
-};
-
-const handleAdd = () => {
-  this.$alert("已成功提交", "身份认证方式", {
-    confirmButtonText: "确定",
-  });
-};
-
-const filters = {
-  //tag类型
-  gettag(way) {
-    const Type = {
-      1: "身份证",
-      2: "护照",
-      3: "社保卡",
-    };
-    return Type[way];
-  },
-  //颜色名称
-  getcolor(way) {
-    const arr = {
-      1: "primary",
-      2: "success",
-      3: "warning",
-    };
-    return arr[way];
-  },
-};
+const handleSubmit = () => {};
 </script>
 
-<style>
-.num {
-  margin-bottom: 5px;
-}
-.cal {
-  margin-left: 0px;
-}
-.xl {
-  margin-right: 10px;
-}
-.sel {
-  position: absolute;
-  clip: rect(2px 90px 30px 2px);
-  width: 90px;
-  height: 28px;
-  line-height: 28px;
-  font-size: 15px;
-  font-weight: bold;
-}
-.ad {
-  margin-bottom: 20px;
+<style lang="scss" scoped>
+.done-btn {
+  margin-top: 20px;
 }
 </style>

@@ -2,6 +2,7 @@
   <el-table
     :data="products"
     :default-sort="{ prop: 'id', order: 'descending' }"
+    border
     style="width: 100%"
   >
     <el-table-column prop="id" label="ID" sortable> </el-table-column>
@@ -9,32 +10,38 @@
     <el-table-column prop="detail" label="详情"> </el-table-column>
     <el-table-column label="地区">
       <template #default="scope">
-        <div v-for="(area, index) in scope.row.areas" :key="index">
-          {{ stringifyArea(area) }}
+        <div v-if="isString(scope.row.areas)">
+          {{ stringifyArea(scope.row.areas) }}
+        </div>
+        <div v-else>
+          <div v-for="(area, index) in scope.row.areas" :key="index">
+            {{ stringifyArea(area) }}
+          </div>
         </div>
       </template>
     </el-table-column>
-
-    <el-table-column label="操作">
-      <template #default="scope">
-        <el-button size="small" type="primary" @click="handleAdd(scope.row)"
-          >添加</el-button
-        >
-      </template>
-    </el-table-column>
   </el-table>
+
+  <el-button type="primary" class="done-btn" @click="handleSubmit">
+    提交修改
+  </el-button>
 </template>
 
 <script setup>
-import products from "../../assets/data/products";
 import { stringifyArea } from "../../utils/util";
+import { getAllProducts } from "../../assets/data/products";
 
-const handleAdd = (row) => {
-  // console.log(JSON.stringify(row, null, 2));
-  // console.log(JSON.stringify(col, null, 2));
+const products = getAllProducts();
+
+const isString = (obj) => {
+  return typeof obj === "string";
 };
 
-const handleDelete = (row) => {};
+const handleSubmit = (row) => {};
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.done-btn {
+  margin-top: 20px;
+}
+</style>

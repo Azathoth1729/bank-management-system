@@ -20,7 +20,7 @@ const routes = [
     component: () => import("../views/home/Home"),
   },
   {
-    name: "productshow",
+    name: "产品详情",
     path: "/productshow/:id",
     props: (route) => ({ ...route.params, id: parseInt(route.params.id) }),
     meta: {
@@ -69,35 +69,24 @@ const routes = [
 
   {
     name: "身份认证",
-    path: "/produc/authentication",
+    path: "/product/authentication",
     component: () => import("../views/productControl/Authentication"),
-
     meta: {
       requireAuth: true,
     },
   },
-
   {
-    name: "担保人设置",
-    path: "/produc/bondsman_control",
+    name: "担保人控制",
+    path: "/product/bondsman_control",
     component: () => import("../views/productControl/BondsManControl"),
-
     meta: {
       requireAuth: true,
     },
   },
   {
     name: "违约控制",
-    path: "/produc/penalty_control",
+    path: "/product/penalty_control",
     component: () => import("../views/productControl/PenaltyControl"),
-    meta: {
-      requireAuth: true,
-    },
-  },
-  {
-    name: "标签控制",
-    path: "/produc/produc_tags",
-    component: () => import("../views/productControl/ProductTags"),
     meta: {
       requireAuth: true,
     },
@@ -105,7 +94,7 @@ const routes = [
 
   {
     name: "利率控制",
-    path: "/produc/rate_control",
+    path: "/product/rate_control",
     component: () => import("../views/productControl/RateControl"),
     meta: {
       requireAuth: true,
@@ -120,14 +109,22 @@ const routes = [
     },
   },
   {
-    name: "白名单信息",
-    path: "/produc/white_list",
+    name: "标签控制",
+    path: "/product/tags_control",
+    component: () => import("../views/productControl/TagsControl"),
+    meta: {
+      requireAuth: true,
+    },
+  },
+  {
+    name: "黑名单控制",
+    path: "/product/white_list",
     component: () => import("../views/productControl/WhiteList"),
     meta: {
       requireAuth: true,
     },
   },
-
+  // summary page
   {
     name: "产品信息",
     path: "/product_info",
@@ -144,6 +141,7 @@ const routes = [
       requireAuth: true,
     },
   },
+  // notfound page
   {
     path: "/:pathMatch(.*)*",
     name: "NotFound",

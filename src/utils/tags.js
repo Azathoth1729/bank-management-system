@@ -1,13 +1,15 @@
-const tagType = ['', 'success', 'info', 'warning', 'danger']
+const tagType = ["", "success", "info", "warning", "danger"];
 
-function* genTag() {
-  for (let i = 0; ; i++) yield tagType[i % tagType.length]
-}
+const tags = [
+  "白酒",
+  "军工",
+  "医疗",
+  "服装",
+  "汽车",
+  "化工",
+  "电力",
+  "半导体",
+  "新能源",
+];
 
-let generator = genTag()
-
-// for (let val of generator) {
-//   console.log(val);
-// }
-
-console.log(generator.next().value)
+export { tags, tagType };

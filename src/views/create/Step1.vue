@@ -1,19 +1,19 @@
 <template>
-  <h3>基本信息配置</h3>
+  <h3>基本配置</h3>
 
   <el-form :model="form" label-width="80px">
     <el-form-item label="产品编号">
       <el-input
         v-model.number="form.id"
         placeholder="请输入产品编号(9位数字)"
-      ></el-input>
+      />
     </el-form-item>
 
     <el-form-item label="产品名称">
       <el-input
         v-model.number="form.name"
         placeholder="请输入产品名(20字以内)"
-      ></el-input>
+      />
     </el-form-item>
 
     <el-form-item label="起始时间">
@@ -42,33 +42,30 @@
       <el-input
         v-model.number="form.price"
         placeholder="请输入产品价格(小数)"
-      ></el-input>
+      />
     </el-form-item>
     <el-form-item label="产品利率">
       <el-input
         v-model.number="form.rate"
         placeholder="请输入产品利率(小数,=>0)"
-      ></el-input>
+      />
     </el-form-item>
     <el-form-item label="产品详情">
       <el-input
         type="textarea"
         v-model="form.detail"
         placeholder="产品的详细描述(100字以内)"
-      ></el-input>
+      />
     </el-form-item>
 
     <el-form-item label="产品类型">
       <el-select v-model="form.tag" placeholder="请选择基金所属类型">
-        <el-option label="白酒" value="白酒"></el-option>
-        <el-option label="军工" value="军工"></el-option>
-        <el-option label="医疗" value="医疗"></el-option>
-        <el-option label="服装" value="服装"></el-option>
-        <el-option label="汽车" value="汽车"></el-option>
-        <el-option label="化工" value="化工"></el-option>
-        <el-option label="电力" value="电力"></el-option>
-        <el-option label="半导体" value="半导体"></el-option>
-        <el-option label="新能源" value="新能源"></el-option>
+        <el-option
+          v-for="(tag, index) in AllTags"
+          :key="index"
+          :label="tag"
+          :value="tag"
+        />
       </el-select>
     </el-form-item>
   </el-form>
@@ -83,6 +80,7 @@
 
 <script setup>
 import GoNext from "../../components/GoNext";
+import { tags as AllTags } from "../../utils/tags";
 
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
@@ -110,18 +108,7 @@ const form = reactive({
 const router = useRouter();
 
 const handleCancel = (form) => {
-  console.log("before cancel", form);
-  form = {
-    id: "",
-    name: "",
-    start_date: "",
-    end_date: "",
-    price: "",
-    rate: "",
-    detail: "",
-    tag: "",
-  };
-  console.log("arter cancel", form);
+  console.log(form);
 };
 </script>
 

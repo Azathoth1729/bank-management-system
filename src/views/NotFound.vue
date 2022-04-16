@@ -1,6 +1,5 @@
 <template>
   <div>
-    test
     <GoNext text="返回首页" btn-type="primary" router-name="/home" />
   </div>
 </template>

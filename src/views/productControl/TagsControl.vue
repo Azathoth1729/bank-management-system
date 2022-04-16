@@ -8,9 +8,9 @@
     <el-table-column prop="id" label="ID" sortable> </el-table-column>
     <el-table-column prop="name" label="产品名" sortable> </el-table-column>
     <el-table-column prop="detail" label="详情"> </el-table-column>
-    <el-table-column label="黑名单">
+    <el-table-column label="标签">
       <template #default="scope">
-        {{ scope.row.white_list }}
+        <el-tag size="small">{{ scope.row.tag }} </el-tag>
       </template>
     </el-table-column>
 
@@ -18,12 +18,15 @@
       <template #default="scope">
         <el-select
           @change="handleEdit($event, scope.row)"
-          v-model.number="white_lists[scope.$index]"
-          placeholder="选择黑名单"
+          v-model="tags[scope.$index]"
+          placeholder="请选择基金所属类型"
         >
-          <el-option v-if="scope.row.white_list !== 0" label="黑名单0" value="0" />
-          <el-option v-if="scope.row.white_list !== 1" label="黑名单1" value="1" />
-          <el-option v-if="scope.row.white_list !== 2" label="黑名单2" value="2" />
+          <el-option
+            v-for="(tag, index) in AllTags"
+            :key="index"
+            :label="tag"
+            :value="tag"
+          />
         </el-select>
       </template>
     </el-table-column>
@@ -35,16 +38,18 @@
 </template>
 
 <script setup>
-import { ref, reactive } from "vue";
-import { getAllProducts } from "../../assets/data/products";
+import { reactive } from "vue";
+import { getAllProducts, getProductById } from "../../assets/data/products";
+import { tags as AllTags } from "../../utils/tags";
+
 import {} from "../../utils/util";
 
 const products = getAllProducts();
 
-const white_lists = reactive([]);
+const tags = reactive([]);
 
 const handleEdit = (event, product) => {
-  product.white_list = parseInt(event);
+  product.tag = event;
 };
 
 const handleSubmit = () => {};

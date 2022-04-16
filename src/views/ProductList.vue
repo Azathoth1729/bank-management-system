@@ -7,49 +7,49 @@
     style="width: 100%"
   >
     <el-table-column type="expand">
-      <template #default="props">
+      <template #default="scope">
         <el-form label-position="left" :inline="true" class="product-details">
           <el-form-item label="产品编号">
-            {{ props.row.id }}
+            {{ scope.row.id }}
           </el-form-item>
           <el-form-item label="产品名">
-            {{ props.row.name }}
+            {{ scope.row.name }}
           </el-form-item>
           <el-form-item label="开始时间">
-            {{ props.row.start_date }}
+            {{ scope.row.start_date }}
           </el-form-item>
           <el-form-item label="结束时间">
-            {{ props.row.end_date }}
+            {{ scope.row.end_date }}
           </el-form-item>
           <el-form-item label="价格">
-            {{ props.row.price }}
+            {{ scope.row.price }}
           </el-form-item>
           <el-form-item label="税率">
-            {{ props.row.rate }}
+            {{ scope.row.rate }}
           </el-form-item>
           <el-form-item label="详情">
-            {{ props.row.detail }}
+            {{ scope.row.detail }}
           </el-form-item>
-          <el-form-item label="标签">
-            {{ props.row.tags }}
+          <el-form-item label="标签" width="180">
+            <el-tag size="small">{{ scope.row.tag }} </el-tag>
           </el-form-item>
           <el-form-item label="地区">
-            {{ props.row.area }}
+            {{ scope.row.area }}
           </el-form-item>
           <el-form-item label="库存">
-            {{ props.row.stock }}
+            {{ scope.row.stock }}
           </el-form-item>
           <el-form-item label="认证方式">
-            {{ props.row.auth_type }}
+            {{ scope.row.auth_type }}
           </el-form-item>
           <el-form-item label="违约惩罚方式">
-            {{ props.row.penalty }}
+            {{ scope.row.penalty }}
           </el-form-item>
           <el-form-item label="白名单">
-            {{ props.row.white_list }}
+            {{ scope.row.white_list }}
           </el-form-item>
           <el-form-item label="担保人">
-            {{ props.row.bondsman }}
+            {{ stringifyBondsman(scope.row.bondsman) }}
           </el-form-item>
         </el-form>
       </template>
@@ -68,12 +68,6 @@
     <el-table-column prop="rate" label="利率" sortable width="180">
     </el-table-column>
     <el-table-column prop="detail" label="详情" width="180"> </el-table-column>
-    <el-table-column prop="tags" label="标签" width="100">
-      <template #default="props">
-        <el-tag :key="index" size="small">{{ props.row.tag }} </el-tag>
-      </template>
-    </el-table-column>
-
     <el-table-column label="操作">
       <template #default="scope">
         <el-button size="small" type="primary" @click="handleEdit(scope.row)"
@@ -88,7 +82,10 @@
 </template>
 
 <script setup>
-import products from "../assets/data/products";
+import { getAllProducts } from "../assets/data/products";
+import { stringifyBondsman } from "../utils/util";
+
+const products = getAllProducts();
 
 const handleEdit = (row) => {
   console.log(JSON.stringify(row, null, 2));

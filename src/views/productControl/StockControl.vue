@@ -1,68 +1,55 @@
 <template>
-  <section>
-    <el-table :data="products" stripe style="width: 100%">
-      <el-table-column prop="id" label="产品ID" width="180"> </el-table-column>
-      <el-table-column prop="name" label="产品名" width="180">
-      </el-table-column>
-      <el-table-column prop="stock" label="总库存" sortable width="180">
-      </el-table-column>
-      <el-table-column prop="payed_stock" label="已购买数" sortable width="180">
-      </el-table-column>
-      <el-table-column prop="remain" label="剩余可买" sortable width="180">
-        <template slot-scope="scope">
-          <span> {{ scope.row.stock - scope.row.payed_stock }} </span>
-        </template>
-      </el-table-column>
-      <el-table-column label="操作" width="">
-        <template slot-scope="scope">
-          <el-row>
-            <el-input
-              class="edit-box"
-              v-model="amount"
-              placeholder="0"
-              clearable
-            ></el-input>
-            <el-button
-              type="primary"
-              round
-              class="edit-btn"
-              @click="handleEdit(scope.row.id, scope.row.amount)"
-              >修改库存
-            </el-button>
-          </el-row>
-        </template>
-      </el-table-column>
-    </el-table>
-  </section>
+  <el-table
+    :data="products"
+    :default-sort="{ prop: 'name', order: 'ascending' }"
+    border
+    style="width: 100%"
+  >
+    <el-table-column prop="id" label="ID" sortable> </el-table-column>
+    <el-table-column prop="name" label="产品名" sortable> </el-table-column>
+    <el-table-column prop="detail" label="详情"> </el-table-column>
+    <el-table-column label="总库存">
+      <template #default="scope">
+        {{ scope.row.stock }}
+      </template>
+    </el-table-column>
+
+    <el-table-column label="修改">
+      <template #default="scope">
+        <el-input
+          @change="handleEdit($event, scope.row)"
+          v-model.number="stocks[scope.$index]"
+          placeholder="请输入修改后的数值"
+        />
+      </template>
+    </el-table-column>
+  </el-table>
+
+  <el-button type="primary" class="done-btn" @click="handleSubmit">
+    提交修改
+  </el-button>
 </template>
 
-<script>
-import { getAllProducts, getProductById } from '../../assets/data/products'
+<script setup>
+import { ref, reactive } from "vue";
+import { getAllProducts, getProductById } from "../../assets/data/products";
+import {
+  stringifyObj,
+  stringifyArea,
+  stringifyAuthType,
+} from "../../utils/util";
 
-export default {
-  name: 'StockControl',
-  data() {
-    return {
-      products: getAllProducts(),
-      amount: 0,
-    }
-  },
+const products = getAllProducts();
 
-  methods: {
-    handleEdit(id, amount) {
-      let product = getProductById(id)
-      product.stock = amount
-    },
-  },
-}
+const stocks = reactive([]);
+
+const handleEdit = (event, product) => {
+  product.stock = parseInt(event);
+};
 </script>
 
-<style scoped>
-.edit-box {
-  margin-bottom: 5px;
-}
-
-.edit-btn {
-  margin-left: 0px;
+<style lang="scss" scoped>
+.done-btn {
+  margin-top: 20px;
 }
 </style>

@@ -9,7 +9,7 @@
     <template #extra>
       <router-link
         :to="{
-          name: 'productshow',
+          name: '产品详情',
           params: { id: product.id },
         }"
       >
@@ -26,9 +26,7 @@
       {{ product.price }}
     </el-descriptions-item>
     <el-descriptions-item label="标签">
-      <el-tag v-for="(tag, index) in product.tags" :key="index" size="small"
-        >{{ tag }}
-      </el-tag>
+      <el-tag size="small">{{ product.tag }} </el-tag>
     </el-descriptions-item>
     <el-descriptions-item
       label="产品说明"

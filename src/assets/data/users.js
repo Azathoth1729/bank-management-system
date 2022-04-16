@@ -64,8 +64,16 @@ const users = [
   },
 ];
 
+function getProductsByFilter(f) {
+  return users.filter(f);
+}
+
 export function getUserById(id) {
   return users.find((user) => user.id === id);
+}
+
+export function getWhiteList(listId) {
+  return getProductsByFilter((user) => listId === user.white_list);
 }
 
 export default users;

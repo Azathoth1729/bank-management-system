@@ -1,3 +1,5 @@
-const lists = [[], [], []]
+import { getWhiteList } from "./users";
 
-export default lists
+const lists = [[getWhiteList(1)], [getWhiteList(2)], [getWhiteList(3)]];
+
+export default lists;

@@ -66,32 +66,32 @@ const navItems = [
         title: "地区控制",
       },
       {
-        index: "/product/white_list",
-        title: "白名单信息",
-      },
-      {
-        index: "/product/stock_control",
-        title: "库存控制",
-      },
-      {
-        index: "/product/rate_control",
-        title: "利率控制",
-      },
-      {
         index: "/product/authentication",
-        title: "信息认证",
+        title: "身份认证",
       },
       {
-        index: "/product/produc_tags",
-        title: "产品标签",
+        index: "/product/bondsman_control",
+        title: "担保人控制",
       },
       {
         index: "/product/penalty_control",
         title: "违约控制",
       },
       {
-        index: "/product/bondsman_control",
-        title: "担保人设置",
+        index: "/product/rate_control",
+        title: "利率控制",
+      },
+      {
+        index: "/product/stock_control",
+        title: "库存控制",
+      },
+      {
+        index: "/product/tags_control",
+        title: "产品标签",
+      },
+      {
+        index: "/product/white_list",
+        title: "黑名单控制",
       },
     ],
   },
@@ -106,7 +106,7 @@ const navItems = [
 ];
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .sidebar {
   display: block;
   position: absolute;

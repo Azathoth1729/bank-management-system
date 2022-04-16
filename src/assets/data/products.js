@@ -35,10 +35,10 @@ const products = [
     stock: 6000,
     payed_stock: 500,
     white_list: 1,
-    penalty: "固定罚款",
+    penalty: 0,
 
     areas: [areas[0], areas[2]],
-    auth_type: 1,
+    auth_type: 2,
     bondsman: false,
     calculate_rate: 1,
   },
@@ -49,17 +49,17 @@ const products = [
     end_date: "2022-04-02",
     price: 500000,
     rate: 0.04,
-    detail: "details of A",
+    detail: "detail of A",
     tag: "半导体",
 
     stock: 15000,
     payed_stock: 500,
     white_list: 2,
-    penalty: "固定罚款",
+    penalty: 1,
 
     areas: [areas[1]],
-    auth_type: 1,
-    bondsman: false,
+    auth_type: 0,
+    bondsman: true,
     calculate_rate: 1,
   },
   {
@@ -75,7 +75,7 @@ const products = [
     stock: 5000,
     payed_stock: 500,
     white_list: 3,
-    penalty: "固定罚款",
+    penalty: 2,
 
     areas: [areas[3]],
     auth_type: 1,
@@ -94,10 +94,10 @@ const products = [
 
     stock: 5500,
     payed_stock: 500,
-    white_list: 4,
-    penalty: "固定罚款",
+    white_list: 2,
+    penalty: 0,
 
-    areas: [areas[2]],
+    areas: "all",
     auth_type: 1,
     bondsman: false,
     calculate_rate: 1,
@@ -112,9 +112,8 @@ export function getProductById(id) {
   return products.find((product) => product.id === id);
 }
 
-// export function setProduct(id, product) {
-//   let target = getProductById(id)
-//   target = product
-// }
+function getProductsByFilter(f) {
+  return products.filter(f);
+}
 
 export default products;

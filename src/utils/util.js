@@ -1,18 +1,26 @@
-export function stringifyArea(area) {
+function stringifyArea(area) {
   // type area = Area | string
-  if (typeof area === "string") {
-    return area;
+  switch (true) {
+    case typeof area === "string":
+      return area;
+    case area.city === "":
+      return `${area.province}-${area.region}`;
+    default:
+      return `${area.province}-${area.city}-${area.region}`;
   }
-  if (area.city === "") {
-    return `${area.province}-${area.region}`;
-  }
-  return `${area.province}-${area.city}-${area.region}`;
 }
 
-export function stringifyObj(obj) {
-  return JSON.stringify(obj, null, 2)
+function stringifyObj(obj) {
+  return JSON.stringify(obj, null, 2);
 }
 
-export function stringifyAuthType(auth_type) {
-  a = {0: "无", 1: "身份证", 2:"护照"};
+function stringifyAuthType(auth_type) {
+  const authMap = { 0: "无", 1: "身份证", 2: "护照" };
+  return authMap[auth_type];
 }
+
+function stringifyBondsman(bondsman) {
+  return bondsman ? "需要" : "不需要";
+}
+
+export { stringifyObj, stringifyArea, stringifyAuthType, stringifyBondsman };
