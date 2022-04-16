@@ -33,14 +33,12 @@ const currentRoute = computed(() => {
 <style lang="scss">
 @import "./assets/css/main.css";
 
-
 .main-container {
   position: absolute;
   left: 198px;
   right: 0;
   top: 70px;
   bottom: 0;
-  padding-bottom: 30px;
   background-color: white;
 }
 

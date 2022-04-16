@@ -23,7 +23,7 @@ import { useRouter } from "vue-router";
 import { ElMessageBox } from "element-plus";
 
 const sysName = "银行后台管理系统";
-const sysUserAvatar = require("../assets/icon.png");
+const sysUserAvatar = require("../assets/avatar.png");
 
 const router = useRouter();
 
@@ -69,8 +69,8 @@ const handleCommand = (command) => {
 
     .user-avator {
       display: block;
-      width: 40px;
-      height: 40px;
+      width: 55px;
+      height: 55px;
       margin-top: 10px;
       cursor: pointer;
     }
