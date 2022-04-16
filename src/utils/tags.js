@@ -1,5 +1,3 @@
-const tagType = ["", "success", "info", "warning", "danger"];
-
 const tags = [
   "白酒",
   "军工",
@@ -12,4 +10,4 @@ const tags = [
   "新能源",
 ];
 
-export { tags, tagType };
+export { tags };
