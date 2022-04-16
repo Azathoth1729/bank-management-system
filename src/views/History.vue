@@ -1,18 +1,22 @@
 <template>
   <div class="history-table">
-    <el-table :data="tableData" stripe style="width: 100%">
-      <el-table-column prop="date" label="操作时间" width="280">
-      </el-table-column>
-      <el-table-column prop="operator" label="操作员" width="280">
-      </el-table-column>
-      <el-table-column prop="operation" label="更改属性">
+    <el-table :data="operations" stripe style="width: 100%">
+      <el-table-column label="操作时间" width="280">
         <template #default="scope">
-          <el-tag
-            :key="tag"
-            v-for="tag in scope.row.operation"
-            :type="getColor(tag)"
-            disable-transitions
-            >{{ getTag(tag) }}
+          {{ scope.row.time }}
+        </template>
+      </el-table-column>
+      <el-table-column label="操作类型">
+        <template #default="scope">
+          <el-tag :type="moduloGetItem(operationTagTypes, scope.$index)"
+            >{{ scope.row.operationType }}
+          </el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column label="操作事项">
+        <template #default="scope">
+          <el-tag :type="moduloGetItem(tagTypes, scope.$index)"
+            >{{ scope.row.task }}
           </el-tag>
         </template>
       </el-table-column>
@@ -21,35 +25,44 @@
 </template>
 
 <script setup>
-const tags = [
-  "",
-  "利率",
-  "价格",
-  "白名单",
-  "地区",
-  "库存",
-  "认证",
-  "标签",
-  "违约",
-  "担保人",
+import { tagTypes } from "../utils/tags";
+import { moduloGetItem, formatDate } from "../utils/util";
+
+const tasks = [
+  "地区控制",
+  "身份认证",
+  "担保人控制",
+  "违约控制",
+  "利率控制",
+  "库存控制",
+  "产品标签",
+  "黑名单控制",
 ];
 
-const type = ["", "success", "info", "warning", "danger"];
-
-const tableData = [
+const operations = [
   {
-    date: "2022-04-04",
-    operator: "2019141460306",
-    operation: [1, 3, 5],
+    time: formatDate(new Date()),
+    operationType: "创建",
+    task: tasks[0],
+  },
+  {
+    time: formatDate(new Date()),
+    operationType: "修改",
+    task: tasks[1],
+  },
+  {
+    time: formatDate(new Date()),
+    operationType: "创建",
+    task: tasks[2],
+  },
+  {
+    time: formatDate(new Date()),
+    operationType: "修改",
+    task: tasks[3],
   },
 ];
 
-const getColor = (idx) => {
-  return type[idx % 5];
-};
-const getTag = (idx) => {
-  return tags[idx];
-};
+const operationTagTypes = ["success", "danger"];
 </script>
 
 <style lang="scss" scoped>

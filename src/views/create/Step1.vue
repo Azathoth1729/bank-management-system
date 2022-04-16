@@ -109,8 +109,8 @@ const form = reactive({
   // penalty: "",
 
   // area: [],
-  // bondsman: [],
-  // auth_type: [],
+  // bondsman: false,
+  // auth_type: "",
 });
 
 const router = useRouter();
