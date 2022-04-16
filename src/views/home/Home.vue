@@ -51,7 +51,9 @@
 <script setup>
 import GoNext from "../../components/GoNext";
 
-import products from "../../assets/data/products";
+import { getAllProducts } from "../../assets/data/products";
+
+const products = getAllProducts();
 </script>
 
 <style scoped>
