@@ -12,7 +12,6 @@
   "main": "babel.config.js",
   "dependencies": {
     "@element-plus/icons-vue": "^1.1.4",
-    "@vue/compat": "^3.2.33",
     "axios": "^0.22.0",
     "core-js": "^3.22.0",
     "element-plus": "^2.1.9",
