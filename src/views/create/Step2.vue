@@ -76,7 +76,7 @@
 
   <div class="nav-btns">
     <GoNext
-      @clikc="() => handleSubmit(areas)"
+      @click="() => handleSubmit(areas)"
       text="下一步"
       btn-type="primary"
       router-name="/create/create_product/3"

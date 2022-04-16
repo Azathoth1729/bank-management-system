@@ -1,14 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import AreaControl from "../views/productControl/AreaControl";
-import WhiteList from "../views/productControl/WhiteList";
-import StockControl from "../views/productControl/StockControl";
-import RateControl from "../views/productControl/RateControl";
-import Authentication from "../views/productControl/Authentication";
-import ProductTags from "../views/productControl/ProductTags";
-import PenaltyControl from "../views/productControl/PenaltyControl";
-import BondsManControl from "../views/productControl/BondsManControl";
-
 const routes = [
   {
     path: "/login",
@@ -70,47 +61,27 @@ const routes = [
   {
     name: "地区控制",
     path: "/product/area_control",
-    component: AreaControl,
+    component: () => import("../views/productControl/AreaControl"),
     meta: {
       requireAuth: true,
     },
   },
+
   {
-    name: "白名单信息",
-    path: "/produc/white_list",
-    component: WhiteList,
-    meta: {
-      requireAuth: true,
-    },
-  },
-  {
-    name: "库存控制",
-    path: "/product/stock_control",
-    component: StockControl,
-    meta: {
-      requireAuth: true,
-    },
-  },
-  {
-    name: "利率控制",
-    path: "/produc/rate_control",
-    component: RateControl,
-    meta: {
-      requireAuth: true,
-    },
-  },
-  {
-    name: "信息认证",
+    name: "身份认证",
     path: "/produc/authentication",
-    component: Authentication,
+    component: () => import("../views/productControl/Authentication"),
+
     meta: {
       requireAuth: true,
     },
   },
+
   {
-    name: "产品标签",
-    path: "/produc/produc_tags",
-    component: ProductTags,
+    name: "担保人设置",
+    path: "/produc/bondsman_control",
+    component: () => import("../views/productControl/BondsManControl"),
+
     meta: {
       requireAuth: true,
     },
@@ -118,19 +89,45 @@ const routes = [
   {
     name: "违约控制",
     path: "/produc/penalty_control",
-    component: PenaltyControl,
+    component: () => import("../views/productControl/PenaltyControl"),
     meta: {
       requireAuth: true,
     },
   },
   {
-    name: "担保人设置",
-    path: "/produc/bondsman_control",
-    component: BondsManControl,
+    name: "标签控制",
+    path: "/produc/produc_tags",
+    component: () => import("../views/productControl/ProductTags"),
     meta: {
       requireAuth: true,
     },
   },
+
+  {
+    name: "利率控制",
+    path: "/produc/rate_control",
+    component: () => import("../views/productControl/RateControl"),
+    meta: {
+      requireAuth: true,
+    },
+  },
+  {
+    name: "库存控制",
+    path: "/product/stock_control",
+    component: () => import("../views/productControl/StockControl"),
+    meta: {
+      requireAuth: true,
+    },
+  },
+  {
+    name: "白名单信息",
+    path: "/produc/white_list",
+    component: () => import("../views/productControl/WhiteList"),
+    meta: {
+      requireAuth: true,
+    },
+  },
+
   {
     name: "产品信息",
     path: "/product_info",
@@ -146,6 +143,11 @@ const routes = [
     meta: {
       requireAuth: true,
     },
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "NotFound",
+    component: () => import("../views/NotFound.vue"),
   },
 ];
 

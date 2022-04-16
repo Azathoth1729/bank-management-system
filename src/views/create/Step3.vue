@@ -61,6 +61,9 @@ const form = reactive({
   stock: "",
   white_list: "",
 });
+
+const handleSubmit = () => {};
+const handleCancel = () => {};
 </script>
 
 <style lang="scss" scoped>
