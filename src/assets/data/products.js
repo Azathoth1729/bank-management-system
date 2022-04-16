@@ -104,11 +104,11 @@ const products = [
   },
 ];
 
-export function getAllProducts() {
+function getAllProducts() {
   return products;
 }
 
-export function getProductById(id) {
+function getProductById(id) {
   return products.find((product) => product.id === id);
 }
 
@@ -116,4 +116,5 @@ function getProductsByFilter(f) {
   return products.filter(f);
 }
 
+export { getAllProducts, getProductById };
 export default products;
