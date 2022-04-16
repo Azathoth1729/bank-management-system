@@ -1,4 +1,6 @@
 <template>
+  <h3>基本信息配置</h3>
+
   <el-form :model="form" label-width="80px">
     <el-form-item label="产品编号">
       <el-input
@@ -13,7 +15,7 @@
         placeholder="请输入产品名(20字以内)"
       ></el-input>
     </el-form-item>
-    
+
     <el-form-item label="起始时间">
       <el-col :span="11">
         <el-date-picker
@@ -71,8 +73,12 @@
     </el-form-item>
   </el-form>
 
-  <GoNext text="下一步" btn-type="primary" url="/create/create_product/2" />
-  <el-button type="danger" @click="handleCancel">取消</el-button>
+  <GoNext
+    text="下一步"
+    btn-type="primary"
+    router-name="/create/create_product/2"
+  />
+  <el-button type="danger" @click="() => handleCancel(form)">取消</el-button>
 </template>
 
 <script setup>
@@ -103,5 +109,25 @@ const form = reactive({
 
 const router = useRouter();
 
-const handleCancel = () => {};
+const handleCancel = (form) => {
+  console.log("before cancel", form);
+  form = {
+    id: "",
+    name: "",
+    start_date: "",
+    end_date: "",
+    price: "",
+    rate: "",
+    detail: "",
+    tag: "",
+  };
+  console.log("arter cancel", form);
+};
 </script>
+
+<style lang="scss" scoped>
+h3 {
+  text-align: left;
+  margin-bottom: 20px;
+}
+</style>

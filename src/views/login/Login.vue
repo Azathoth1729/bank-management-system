@@ -89,7 +89,7 @@ const login = () => {
   //     console.log(err.msg);
   //   });
 
-  router.push("/home/products");
+  router.push("/home");
 };
 </script>
 

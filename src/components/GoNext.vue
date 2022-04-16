@@ -1,5 +1,5 @@
 <template>
-  <el-button :type="btnType" @click="() => router.push(url)" class="go-next">{{
+  <el-button :type="btnType" @click="() => router.push({path: routerName})" class="go-next">{{
     text
   }}</el-button>
 </template>
@@ -20,7 +20,7 @@ const props = defineProps({
     default: "primary",
 
   },
-  url: {
+  routerName: {
     type: String,
   },
 });

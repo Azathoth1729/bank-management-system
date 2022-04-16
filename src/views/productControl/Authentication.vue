@@ -16,12 +16,6 @@
         filter-placement="bottom-end"
       >
         <template #default="scope">
-          <el-tag
-            class="xl"
-            :type="scope.row.way | getcolor"
-            disable-transitions
-            >{{ scope.row.way | gettag }}
-          </el-tag>
           <el-dropdown class="xl" @command="change">
             <span class="el-dropdown-link">
               认证方式
@@ -82,7 +76,7 @@ const tableData = [
   },
 ];
 
-const beforeHandleCommand = (index, command) => {
+const beforeHandleCommand = (beforeHandleCommandindex, command) => {
   return {
     index: index,
     command: command,
