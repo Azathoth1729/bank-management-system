@@ -3,7 +3,7 @@
     <el-card class="product-card">
       <el-scrollbar height="700px">
         <el-descriptions
-          v-for="product in getAllProducts()"
+          v-for="product in state.responseData"
           :key="product.id"
           :title="product.name"
           :column="4"
@@ -53,6 +53,13 @@ import { getAllProducts } from "../../assets/data/products";
 import { tagTypes } from "../../utils/tags";
 import { stringifyArea, moduloGetItem, formatDate } from "../../utils/util";
 
+const state = reactive({
+  // responseCode: 0,
+  // responseMsg: "",
+  // fetching: false,
+  responseData: [],
+});
+
 onMounted(() => {
   const config = {
     url: "/assistance/listProductIntro",
@@ -61,13 +68,6 @@ onMounted(() => {
       "Content-Type": "multipart/form-data",
     },
   };
-
-  const state = reactive({
-    // responseCode: 0,
-    // responseMsg: "",
-    // fetching: false,
-    responseData: [],
-  });
 
   fetchData(state, config);
 

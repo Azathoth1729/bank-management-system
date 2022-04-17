@@ -9,7 +9,7 @@
         label-width="0px"
         class="login-page"
       >
-        <h3 class="title">银行管理系统 登录</h3>
+        <h3>银行管理系统 登录</h3>
         <el-form-item>
           <el-input
             prop="username"
@@ -35,8 +35,8 @@
             style="width: 100%"
             @click="login"
             :loading="logining"
-            >登录</el-button
-          >
+            >登录
+          </el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -88,8 +88,6 @@ const login = () => {
     .catch((err) => {
       console.log(err.msg);
     });
-
-  // router.push("/home");
 };
 </script>
 

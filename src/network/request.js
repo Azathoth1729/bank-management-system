@@ -1,11 +1,11 @@
 import axios from "axios";
 import { ref, toRefs, reactive, onMounted } from "vue";
 
-const instance = axios.create({
+const service = axios.create({
   baseURL: "/api",
 });
 
-instance.interceptors.request.use(
+service.interceptors.request.use(
   (config) => {
     let token = sessionStorage.getItem("token");
     // console.log(token)
@@ -20,13 +20,13 @@ instance.interceptors.request.use(
 );
 
 export function request(config) {
-  return instance(config);
+  return service(config);
 }
 
 export const fetchData = async (state = {}, config) => {
   state.fetching = true;
   try {
-    const res = await instance.request(config);
+    const res = await service.request(config);
     const responseData = res.data;
 
     state.responseCode = responseData.code;
@@ -53,4 +53,4 @@ export const useFetch = (config) => {
   return { ...toRefs(state) };
 };
 
-export { instance };
+export { service };

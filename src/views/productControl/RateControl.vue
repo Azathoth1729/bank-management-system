@@ -16,21 +16,29 @@
         <el-button
           type="text"
           icon="el-icon-edit"
-          @click="handleEdit(scope.$index, scope.row)"
+          @click="handleEdit(scope.row)"
           >编辑
         </el-button>
-        <!-- <el-select
-          @change="handleEdit($event, scope.row)"
-          v-model.number="state[scope.$index]"
-          placeholder="身份认证信息"
-        >
-          <el-option v-if="scope.row.rate !== 0" label="无" value="0" />
-          <el-option v-if="scope.row.rate !== 1" label="身份证" value="1" />
-          <el-option v-if="scope.row.rate !== 2" label="护照" value="2" />
-        </el-select> -->
       </template>
     </el-table-column>
   </el-table>
+
+  <el-dialog v-model="editVisible" title="Tips" width="30%">
+    <el-form label-width="70px">
+      <el-form-item label="税率">
+        <el-input v-model="form.rate"></el-input>
+      </el-form-item>
+      <el-form-item label="后续税率计算方式">
+        <el-input v-model="form.calculate_rate"></el-input>
+      </el-form-item>
+    </el-form>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button type="danger" @click="editVisible = false">取消</el-button>
+        <el-button type="primary" @click="saveEdit"> 提交 </el-button>
+      </span>
+    </template>
+  </el-dialog>
 
   <el-button type="primary" class="done-btn" @click="handleSubmit">
     提交修改
@@ -38,19 +46,36 @@
 </template>
 
 <script setup>
-import { ref, reactive } from "vue";
-import { getAllProducts } from "../../assets/data/products";
+import { ref, reactive, onMounted } from "vue";
+import { getAllProducts, getProductById } from "../../assets/data/products";
 import { stringifyArea, stringifyAuthType } from "../../utils/util";
 
 const products = getAllProducts();
 
-const state = reactive([{}]);
+const currentId = ref(-1);
+const editVisible = ref(false);
 
-const handleEdit = (event, product) => {
-  
-}
-const handleEditCalculateRate = (event, product) => {
-  product.rate = parseInt(event);
+const form = reactive({
+  rate: "",
+  calculate_rate: "",
+});
+
+const handleEdit = (row) => {
+  currentId.value = row.id;
+  Object.keys(form).forEach((item) => {
+    form[item] = row[item];
+  });
+  // form.rate = row.rate;
+  // form.calculate_rate = row.calculate_rate;
+  editVisible.value = true;
+};
+
+const saveEdit = () => {
+  editVisible.value = false;
+  const product = getProductById(currentId);
+  Object.keys(form).forEach((item) => {
+    product[item] = form[item];
+  });
 };
 </script>
 
