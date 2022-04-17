@@ -35,7 +35,7 @@
           <el-descriptions-item
             label="产品说明"
             :contentStyle="{ 'text-align': 'center' }"
-            >{{ product.intro }}
+            >{{ product.detail }}
           </el-descriptions-item>
         </el-descriptions>
       </el-scrollbar>

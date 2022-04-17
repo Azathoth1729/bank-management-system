@@ -1,6 +1,4 @@
 <template>
-  {{ previousProdct }}
-
   <div class="step3">
     <el-card class="form-card">
       <h3>违约、税率控制</h3>

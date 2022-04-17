@@ -86,10 +86,14 @@
       <el-scrollbar height="600px">
         <div v-for="(place, index) in form.areas" :key="index">
           {{ index }} :
-          {{ stringifyArea(place) }}
+          <el-tag :type="moduloGetItem(tagTypes, index)">
+            {{ stringifyArea(place) }}
+          </el-tag>
+
           <el-button
             class="delete-btn"
             type="danger"
+            size="small"
             @click="() => handleDeleteArea(index)"
             >删除
           </el-button>
@@ -102,8 +106,8 @@
 <script setup>
 import GoNext from "../../components/GoNext";
 import GoBack from "../../components/GoBack";
-
-import { stringifyArea, stringifyObj } from "../../utils/util";
+import { tagTypes } from "../../utils/tags";
+import { stringifyArea, moduloGetItem, formatDate } from "../../utils/util";
 
 import { ref, reactive } from "vue";
 import { useRoute } from "vue-router";
