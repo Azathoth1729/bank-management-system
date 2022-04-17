@@ -1,4 +1,6 @@
 <template>
+  {{ previousProdct }}
+
   <div class="step3">
     <el-card class="form-card">
       <h3>违约、税率控制</h3>
@@ -64,6 +66,10 @@ import GoBack from "../../components/GoBack";
 import { stringifyArea, stringifyObj } from "../../utils/util";
 
 import { ref, reactive } from "vue";
+import { useRoute } from "vue-router";
+
+const router = useRoute();
+const previousProdct = JSON.parse(router.params.product);
 
 const form = reactive({
   penalty: "",

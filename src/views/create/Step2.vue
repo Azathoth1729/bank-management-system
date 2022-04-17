@@ -1,4 +1,5 @@
 <template>
+  {{ forwardProduct }}
   <div class="step2">
     <el-card class="form-card">
       <el-form :inline="true" :model="form">
@@ -69,7 +70,10 @@
           text="下一步"
           btn-type="primary"
           :to="{
-            path: '/create/create_product/3',
+            name: '产品添加-第三步',
+            params: {
+              product: JSON.stringify({ ...form, ...previousProdct }),
+            },
           }"
         />
         <GoBack text="上一步" btn-type="primary" />
@@ -102,6 +106,10 @@ import GoBack from "../../components/GoBack";
 import { stringifyArea, stringifyObj } from "../../utils/util";
 
 import { ref, reactive } from "vue";
+import { useRoute } from "vue-router";
+
+const router = useRoute();
+const previousProdct = JSON.parse(router.params.product);
 
 const areaIsAll = ref(false);
 

@@ -29,12 +29,10 @@ const routes = [
     component: () => import("../views/home/ProductShow"),
   },
 
-  
   // product creation
   {
     name: "产品添加-第一步",
     path: "/create/create_product/1",
-    props: (route) => ({ ...route.params }),
     meta: {
       requireAuth: true,
     },
@@ -58,7 +56,6 @@ const routes = [
     },
     component: () => import("../views/create/Step3"),
   },
-
 
   // productControl
   {

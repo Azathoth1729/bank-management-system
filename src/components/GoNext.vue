@@ -14,11 +14,9 @@ const props = defineProps({
     type: String,
     default: "下一步",
   },
-
   btnType: {
     type: String,
     default: "primary",
-
   },
   to: {
     type: Object,

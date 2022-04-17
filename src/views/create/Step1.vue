@@ -77,12 +77,13 @@
           text="下一步"
           btn-type="primary"
           :to="{
-            path: '/create/create_product/2',
+            name: '产品添加-第二步',
+            params: {
+              product: JSON.stringify(form),
+            },
           }"
         />
-        <el-button type="danger" @click="() => handleCancel(form)"
-          >取消</el-button
-        >
+        <el-button type="danger" @click="() => handleCancel()">取消</el-button>
       </div>
     </el-card>
   </div>
@@ -104,22 +105,11 @@ const form = reactive({
   rate: "",
   detail: "",
   tag: "",
-
-  // stock: "",
-  // payed_stock: "",
-  // white_list: "",
-  // penalty: "",
-
-  // area: [],
-  // bondsman: false,
-  // auth_type: "",
 });
 
 const router = useRouter();
 
-const handleCancel = (form) => {
-  console.log(form);
-};
+const handleCancel = () => {};
 </script>
 
 <style lang="scss" scoped>
