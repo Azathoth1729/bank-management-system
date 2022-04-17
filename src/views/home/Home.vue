@@ -3,7 +3,7 @@
     <el-card class="product-card">
       <el-scrollbar height="700px">
         <el-descriptions
-          v-for="product in products"
+          v-for="product in getAllProducts()"
           :key="product.id"
           :title="product.name"
           :column="4"
@@ -35,7 +35,7 @@
           <el-descriptions-item
             label="产品说明"
             :contentStyle="{ 'text-align': 'center' }"
-            >{{ product.detail }}
+            >{{ product.intro }}
           </el-descriptions-item>
         </el-descriptions>
       </el-scrollbar>
@@ -45,22 +45,31 @@
 
 <script setup>
 import GoNext from "../../components/GoNext";
-import { ref, reactive, onMounted } from "vue";
-import { useRequest } from "../../network/request";
 
+import { ref, reactive, onMounted } from "vue";
+import { fetchData } from "../../network/request";
 import { getAllProducts } from "../../assets/data/products";
 
-const config = {
-  url: "/assistance/listProductIntro",
-  method: "GET",
-  header: {
-    "Content-Type": "multipart/form-data",
-  },
-};
+onMounted(() => {
+  const config = {
+    url: "/assistance/listProductIntro",
+    method: "GET",
+    header: {
+      "Content-Type": "multipart/form-data",
+    },
+  };
 
-const resProducts = useRequest(config);
+  const state = reactive({
+    // responseCode: 0,
+    // responseMsg: "",
+    // fetching: false,
+    responseData: [],
+  });
 
-const products = getAllProducts();
+  fetchData(state, config);
+
+  // const { responseData } = fetchData(config);
+});
 </script>
 
 <style scoped>
