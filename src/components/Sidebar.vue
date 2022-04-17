@@ -100,6 +100,14 @@ const navItems = [
     title: "产品信息",
   },
   {
+    title: "黑名单信息",
+    index: "/blackList",
+  },
+  {
+    title: "担保人信息",
+    index: "/bondsmanList",
+  },
+  {
     index: "/history",
     title: "操作记录",
   },

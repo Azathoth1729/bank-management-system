@@ -3,7 +3,6 @@
     :data="products"
     :default-sort="{ prop: 'name', order: 'ascending' }"
     border
-
     style="width: 100%"
   >
     <el-table-column prop="id" label="ID" sortable> </el-table-column>

@@ -134,6 +134,22 @@ const routes = [
     },
   },
   {
+    name: "黑名单信息",
+    path: "/blackList",
+    component: () => import("../views/BlackList"),
+    meta: {
+      requireAuth: true,
+    },
+  },
+  {
+    name: "担保人信息",
+    path: "/bondsmanList",
+    component: () => import("../views/BondsmanList"),
+    meta: {
+      requireAuth: true,
+    },
+  },
+  {
     name: "操作记录",
     path: "/history",
     component: () => import("../views/History"),

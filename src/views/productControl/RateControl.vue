@@ -23,7 +23,12 @@
     </el-table-column>
   </el-table>
 
-  <el-dialog v-model="editVisible" title="Tips" width="30%">
+  <el-button type="primary" class="done-btn" @click="handleSubmit">
+    提交修改
+  </el-button>
+
+  <!-- 编辑弹出框 -->
+  <el-dialog v-model="editVisible" title="修改信息" width="30%">
     <el-form label-width="70px">
       <el-form-item label="税率">
         <el-input v-model="form.rate"></el-input>
@@ -39,10 +44,6 @@
       </span>
     </template>
   </el-dialog>
-
-  <el-button type="primary" class="done-btn" @click="handleSubmit">
-    提交修改
-  </el-button>
 </template>
 
 <script setup>
@@ -65,14 +66,15 @@ const handleEdit = (row) => {
   Object.keys(form).forEach((item) => {
     form[item] = row[item];
   });
-  // form.rate = row.rate;
-  // form.calculate_rate = row.calculate_rate;
   editVisible.value = true;
 };
 
-const saveEdit = () => {
+const saveEdit = () => { // 需要调用后端
   editVisible.value = false;
-  const product = getProductById(currentId);
+
+  // 从这里开始,调用后端把对应的product改成当前的form
+  const product = getProductById(currentId.value);
+
   Object.keys(form).forEach((item) => {
     product[item] = form[item];
   });
