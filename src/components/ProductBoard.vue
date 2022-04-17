@@ -25,7 +25,18 @@
       <el-tag size="small">{{ product.tag }} </el-tag>
     </el-descriptions-item>
     <el-descriptions-item label="地区">
-      {{ product.area }}
+      <div v-if="isString(product.areas)">
+        <el-tag :type="moduloGetItem(tagTypes)">
+          {{ stringifyArea(product.areas) }}
+        </el-tag>
+      </div>
+      <div v-else>
+        <div v-for="(area, index) in product.areas" :key="index">
+          <el-tag :type="moduloGetItem(tagTypes, index)">
+            {{ stringifyArea(area) }}
+          </el-tag>
+        </div>
+      </div>
     </el-descriptions-item>
     <el-descriptions-item label="库存">
       {{ product.stock }}
@@ -46,8 +57,17 @@
 </template>
 
 <script setup>
+import { tagTypes } from "../utils/tags";
+
+import {
+  isString,
+  formatDate,
+  moduloGetItem,
+  stringifyBondsman,
+  stringifyArea,
+} from "../utils/util";
+
 import { getProductById } from "../assets/data/products";
-import { stringifyBondsman } from "../utils/util";
 
 const props = defineProps({
   productId: {

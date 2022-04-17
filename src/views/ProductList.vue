@@ -34,7 +34,18 @@
             <el-tag size="small">{{ scope.row.tag }} </el-tag>
           </el-form-item>
           <el-form-item label="地区">
-            {{ scope.row.area }}
+            <div v-if="isString(scope.row.areas)">
+              <el-tag :type="moduloGetItem(tagTypes, scope.$index)">
+                {{ stringifyArea(scope.row.areas) }}
+              </el-tag>
+            </div>
+            <div v-else>
+              <div v-for="(area, index) in scope.row.areas" :key="index">
+                <el-tag :type="moduloGetItem(tagTypes, index)">
+                  {{ stringifyArea(area) }}
+                </el-tag>
+              </div>
+            </div>
           </el-form-item>
           <el-form-item label="库存">
             {{ scope.row.stock }}
@@ -82,14 +93,19 @@
 </template>
 
 <script setup>
+import { tagTypes } from "../utils/tags";
+import {
+  isString,
+  stringifyBondsman,
+  stringifyArea,
+  moduloGetItem,
+} from "../utils/util";
+
 import { getAllProducts } from "../assets/data/products";
-import { stringifyBondsman } from "../utils/util";
 
 const products = getAllProducts();
 
-const handleEdit = (row) => {
-  console.log(JSON.stringify(row, null, 2));
-};
+const handleEdit = (product) => {};
 
 const handleDelete = (row) => {};
 </script>

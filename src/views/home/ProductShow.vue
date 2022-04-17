@@ -1,8 +1,10 @@
 <template>
   <div class="productshow">
     <el-card class="product-card">
-      <ProductBoard :product-id="id" />
-      <GoBack class="back-btn" />
+      <el-scrollbar height="430px">
+        <ProductBoard :product-id="id" />
+        <GoBack class="back-btn" />
+      </el-scrollbar>
     </el-card>
   </div>
 </template>

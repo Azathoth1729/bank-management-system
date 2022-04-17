@@ -49,8 +49,12 @@ function formatDate(date) {
   return `${less}\t${more}`;
 }
 
-function moduloGetItem(arr, index) {
+function moduloGetItem(arr, index = 0) {
   return arr[index % arr.length];
+}
+
+function isString(obj) {
+  return typeof obj === "string";
 }
 
 export { stringifyObj, stringifyArea, stringifyAuthType, stringifyBondsman };
@@ -58,3 +62,5 @@ export { stringifyObj, stringifyArea, stringifyAuthType, stringifyBondsman };
 export { formatDate };
 
 export { moduloGetItem };
+
+export { isString };

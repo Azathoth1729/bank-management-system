@@ -10,14 +10,20 @@
     <el-table-column prop="detail" label="详情"> </el-table-column>
     <el-table-column label="地区">
       <template #default="scope">
-        scope.$index= {{ scope.$index }}
         <div v-if="isString(scope.row.areas)">
-          {{ stringifyArea(scope.row.areas) }}
+          <!-- <strong> scope.$index= {{ scope.$index }} </strong> -->
+          <el-tag :type="moduloGetItem(tagTypes, scope.$index)">
+            {{ stringifyArea(scope.row.areas) }}
+          </el-tag>
         </div>
         <div v-else>
           <div v-for="(area, index) in scope.row.areas" :key="index">
-            {{ stringifyArea(area) }}
-            (scope.$index, index)= {{ scope.$index }} {{ index }}
+            <!-- <strong>
+              (scope.$index, index)= {{ scope.$index }} {{ index }}
+            </strong> -->
+            <el-tag :type="moduloGetItem(tagTypes, index)">
+              {{ stringifyArea(area) }}
+            </el-tag>
           </div>
         </div>
       </template>
@@ -30,14 +36,17 @@
 </template>
 
 <script setup>
-import { stringifyArea } from "../../utils/util";
+import { tagTypes } from "../../utils/tags";
+import {
+  isString,
+  stringifyArea,
+  moduloGetItem,
+  formatDate,
+} from "../../utils/util";
+
 import { getAllProducts } from "../../assets/data/products";
 
 const products = getAllProducts();
-
-const isString = (obj) => {
-  return typeof obj === "string";
-};
 
 const handleSubmit = (row) => {};
 </script>

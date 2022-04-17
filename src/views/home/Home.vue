@@ -50,6 +50,9 @@ import { ref, reactive, onMounted } from "vue";
 import { fetchData } from "../../network/request";
 import { getAllProducts } from "../../assets/data/products";
 
+import { tagTypes } from "../../utils/tags";
+import { stringifyArea, moduloGetItem, formatDate } from "../../utils/util";
+
 onMounted(() => {
   const config = {
     url: "/assistance/listProductIntro",
