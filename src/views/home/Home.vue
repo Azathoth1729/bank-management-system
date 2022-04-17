@@ -45,8 +45,20 @@
 
 <script setup>
 import GoNext from "../../components/GoNext";
+import { ref, reactive, onMounted } from "vue";
+import { useRequest } from "../../network/request";
 
 import { getAllProducts } from "../../assets/data/products";
+
+const config = {
+  url: "/assistance/listProductIntro",
+  method: "GET",
+  header: {
+    "Content-Type": "multipart/form-data",
+  },
+};
+
+const resProducts = useRequest(config);
 
 const products = getAllProducts();
 </script>

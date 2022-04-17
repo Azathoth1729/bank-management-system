@@ -64,32 +64,32 @@ const rules = {
 };
 
 const login = () => {
-  // request({
-  //   url: "/login",
-  //   method: "POST",
-  //   header: {
-  //     "Content-Type": "multipart/form-data",
-  //   },
-  //   params: {
-  //     username: this.user.username,
-  //     password: this.user.password,
-  //   },
-  // })
-  //   .then((res) => {
-  //     if (res.data.code === 200) {
-  //       sessionStorage.setItem("token", res.data.data.token);
-  //       sessionStorage.setItem("isLogin", 1);
+  request({
+    url: "/login",
+    method: "POST",
+    header: {
+      "Content-Type": "multipart/form-data",
+    },
+    params: {
+      username: user.username,
+      password: user.password,
+    },
+  })
+    .then((res) => {
+      if (res.data.code === 200) {
+        sessionStorage.setItem("token", res.data.data.token);
+        sessionStorage.setItem("isLogin", 1);
 
-  //       sessionStorage.setItem("username", this.user.username);
-  //       sessionStorage.setItem("password", this.user.password);
-  //       router.push("/home/products");
-  //     }
-  //   })
-  //   .catch((err) => {
-  //     console.log(err.msg);
-  //   });
+        sessionStorage.setItem("username", user.username);
+        sessionStorage.setItem("password", user.password);
+        router.push("/home");
+      }
+    })
+    .catch((err) => {
+      console.log(err.msg);
+    });
 
-  router.push("/home");
+  // router.push("/home");
 };
 </script>
 

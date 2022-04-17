@@ -15,15 +15,16 @@ module.exports = {
     },
   },
   devServer: {
-    host: "0.0.0.0",
+    host: "localhost",
     port: 8080,
-    open: false,
+    https: false,
+    open: true,
     proxy: {
       "/api": {
-        target: "http://127.0.0.1:80", //设置你调用的接口域名和端口号 别忘了加http
+        target: "http://10.134.40.171:81",
+        //secure: true,
         changeOrigin: true,
         ws: true,
-        secure: false, // 如果是https接口，需要配置这个参数
         pathRewrite: {
           "^/api": "",
         },
