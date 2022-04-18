@@ -89,7 +89,7 @@ const handleSubmit = () => {
   for(let i=0; i<responseData.length; i++){
     postData({
       url: "/assistance/returnAllProductDetail",
-      method: "POST",
+      data : "POST",
       header: {
         "Content-Type": "multipart/form-data",
       },
@@ -101,7 +101,7 @@ const handleSubmit = () => {
       header: {
         "Content-Type": "multipart/form-data",
       },
-      params:{
+      data :{
         username: sessionStorage.username,
         opeator: "修改",
         productname: responseData.name,
