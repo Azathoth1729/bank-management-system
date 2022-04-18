@@ -57,6 +57,7 @@ const state = reactive({
   responseData: [],
 });
 
+
 onMounted(() => {
   const config = {
     url: "/assistance/listProductIntro",
@@ -71,6 +72,9 @@ onMounted(() => {
   // const { responseData } = fetchData(config);
 });
 // const products = state.responseData;
+
+const size = state.responseData.length;
+const ischanged = new Array(size).fill(0);
 
 const handleSubmit = (row) => {
   

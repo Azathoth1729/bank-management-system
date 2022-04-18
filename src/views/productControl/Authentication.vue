@@ -1,6 +1,6 @@
 <template>
 
-  <!-- <span>{{state.responseData[0]}}</span> -->
+  <span>{{state.responseData[0]}}</span>
       <el-scrollbar height="450px">
         <el-table
     :data="state.responseData"
@@ -20,7 +20,7 @@
     <el-table-column label="修改">
       <template #default="scope">
         <el-select
-          @change="handleEdit($event, scope.row)"
+          @change="handleEdit($event, scope.row, scope.$index)"
           v-model.number="auth_types[scope.$index]"
           placeholder="身份认证信息"
         >
@@ -63,7 +63,7 @@ const state = reactive({
 
 onMounted(() => {
   const config = {
-    url: "/assistance/listProductIntro",
+    url: "/assistance/returnAllProductDetail",
     method: "GET",
     header: {
       "Content-Type": "multipart/form-data",
@@ -77,12 +77,46 @@ onMounted(() => {
 
 const auth_types = reactive([]);
 
-const handleEdit = (event, product) => {
+const handleEdit = (event, product, idx) => {
   product.auth_type = parseInt(event);
+  this.ischanged[idx] = 1;
 };
 
+const size = state.responseData.length;
+const ischanged = new Array(size).fill(0);
+
 const handleSubmit = () => {
-  fetchData()
+  state.responseData.filter((num) => {
+    return num === 1;
+  })
+  for(let i=0; i<state.responseData.length; i++){
+    request({
+      url: "",
+      method: "POST",
+      header: {
+        "Content-Type": "multipart/form-data",
+      },
+      params: state.responseData[i],
+    })
+    request({
+      url: "",
+      method: "POST",
+      header: {
+        "Content-Type": "multipart/form-data",
+      },
+      params:{
+        
+      },
+    })
+    .then((res) => {
+      if (res.data.code === 200) {
+        // console.log("提交成功！")
+      }
+    })
+    .catch((err) => {
+      console.log(err.msg);
+    });
+  }
 };
 </script>
 
