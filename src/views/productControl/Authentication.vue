@@ -1,6 +1,9 @@
 <template>
-  <el-table
-    :data="products"
+
+  <!-- <span>{{state.responseData[0]}}</span> -->
+      <el-scrollbar height="450px">
+        <el-table
+    :data="state.responseData"
     :default-sort="{ prop: 'name', order: 'ascending' }"
     border
     style="width: 100%"
@@ -36,10 +39,14 @@
   <el-button type="primary" class="done-btn" @click="handleSubmit">
     提交修改
   </el-button>
+  </el-scrollbar>
+
+
 </template>
 
 <script setup>
-import { ref, reactive } from "vue";
+import { ref, reactive,onMounted } from "vue";
+import { fetchData } from "../../network/request";
 import { getAllProducts, getProductById } from "../../assets/data/products";
 import {
   stringifyObj,
@@ -47,7 +54,26 @@ import {
   stringifyAuthType,
 } from "../../utils/util";
 
-const products = getAllProducts();
+const state = reactive({
+  // responseCode: 0,
+  // responseMsg: "",
+  // fetching: false,
+  responseData: [],
+});
+
+onMounted(() => {
+  const config = {
+    url: "/assistance/listProductIntro",
+    method: "GET",
+    header: {
+      "Content-Type": "multipart/form-data",
+    },
+  };
+
+  fetchData(state, config);
+  // const { responseData } = fetchData(config);
+});
+// const products = getAllProducts();
 
 const auth_types = reactive([]);
 
@@ -55,7 +81,9 @@ const handleEdit = (event, product) => {
   product.auth_type = parseInt(event);
 };
 
-const handleSubmit = () => {};
+const handleSubmit = () => {
+  fetchData()
+};
 </script>
 
 <style lang="scss" scoped>

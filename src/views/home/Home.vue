@@ -29,8 +29,8 @@
           <el-descriptions-item label="价格">
             {{ product.price }}
           </el-descriptions-item>
-          <el-descriptions-item label="标签">
-            <el-tag size="small">{{ product.tag }} </el-tag>
+          <el-descriptions-item label="年限">
+            <el-tag size="small">{{ product.time }} </el-tag>
           </el-descriptions-item>
           <el-descriptions-item
             label="产品说明"
@@ -70,7 +70,6 @@ onMounted(() => {
   };
 
   fetchData(state, config);
-
   // const { responseData } = fetchData(config);
 });
 </script>

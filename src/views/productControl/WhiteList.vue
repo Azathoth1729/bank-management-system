@@ -1,4 +1,6 @@
 <template>
+<section>
+  <span>{{state.responseData}}</span>
   <el-table
     :data="products"
     :default-sort="{ prop: 'name', order: 'ascending' }"
@@ -32,16 +34,33 @@
   <el-button type="primary" class="done-btn" @click="handleSubmit">
     提交修改
   </el-button>
+</section>
 </template>
 
 <script setup>
-import { ref, reactive } from "vue";
+import { ref, reactive, onMounted } from "vue";
+import { fetchData } from "../../network/request";
 import { getAllProducts } from "../../assets/data/products";
-import {} from "../../utils/util";
 
-const products = getAllProducts();
+const state = reactive({
+  // responseCode: 0,
+  // responseMsg: "",
+  // fetching: false,
+  responseData: [],
+});
 
-const white_lists = reactive([]);
+onMounted(() => {
+  const config = {
+    url: "/blacklist/all/1",
+    method: "GET",
+    header: {
+      "Content-Type": "multipart/form-data",
+    },
+  };
+
+  fetchData(state, config);
+  // const { responseData } = fetchData(config);
+});
 
 const handleEdit = (event, product) => {
   product.white_list = parseInt(event);

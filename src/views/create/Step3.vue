@@ -36,7 +36,7 @@
         </el-form-item>
         <el-form-item label="黑名单">
           <el-select
-            v-model.numer="form.white_list"
+            v-model.number="form.white_list"
             placeholder="选择产品的黑名单"
           >
             <el-option label="0" value="0" />
@@ -77,7 +77,19 @@ const form = reactive({
   white_list: "",
 });
 
-const handleSubmit = () => {};
+const handleSubmit = () => {
+  request({
+    url: "/create",
+    method: "POST",
+    header: {
+      "Content-Type": "multipart/form-data",
+    },
+    params: {
+      username: user.username,
+      password: user.password,
+    },
+  })
+};
 const handleCancel = () => {};
 </script>
 
