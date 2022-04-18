@@ -23,6 +23,11 @@ function stringifyBondsman(bondsman) {
   return bondsman ? "需要" : "不需要";
 }
 
+function stringifyPenalty(auth_type) {
+  const authMap = { 0: "利率减少", 1: "固定罚款", 2: "信誉度降低" };
+  return authMap[auth_type];
+}
+
 function formatDate(date) {
   function format(date) {
     if (date < 2) {
@@ -57,7 +62,7 @@ function isString(obj) {
   return typeof obj === "string";
 }
 
-export { stringifyObj, stringifyArea, stringifyAuthType, stringifyBondsman };
+export { stringifyObj, stringifyArea, stringifyAuthType, stringifyBondsman ,stringifyPenalty};
 
 export { formatDate };
 

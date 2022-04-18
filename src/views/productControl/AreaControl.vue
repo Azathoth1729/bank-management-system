@@ -1,6 +1,8 @@
 <template>
+<section>
+  <span>{{state.responseData}}</span>
   <el-table
-    :data="products"
+    :data="state.responseData"
     :default-sort="{ prop: 'id', order: 'descending' }"
     border
     style="width: 100%"
@@ -33,10 +35,14 @@
   <el-button type="primary" class="done-btn" @click="handleSubmit">
     提交修改
   </el-button>
+</section>
 </template>
 
 <script setup>
 import { tagTypes } from "../../utils/tags";
+import { ref, reactive, onMounted } from "vue";
+import { fetchData } from "../../network/request";
+import { getAllProducts } from "../../assets/data/products";
 import {
   isString,
   stringifyArea,
@@ -44,11 +50,31 @@ import {
   formatDate,
 } from "../../utils/util";
 
-import { getAllProducts } from "../../assets/data/products";
+const state = reactive({
+  // responseCode: 0,
+  // responseMsg: "",
+  // fetching: false,
+  responseData: [],
+});
 
-const products = getAllProducts();
+onMounted(() => {
+  const config = {
+    url: "/assistance/listProductIntro",
+    method: "GET",
+    header: {
+      "Content-Type": "multipart/form-data",
+    },
+  };
 
-const handleSubmit = (row) => {};
+  fetchData(state, config);
+  // fetchData(whitelist, config);
+  // const { responseData } = fetchData(config);
+});
+// const products = state.responseData;
+
+const handleSubmit = (row) => {
+  
+};
 </script>
 
 <style lang="scss" scoped>

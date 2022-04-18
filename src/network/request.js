@@ -3,6 +3,7 @@ import { ref, toRefs, reactive, onMounted } from "vue";
 
 const service = axios.create({
   baseURL: "/api",
+  // baseURL:"http://10.134.40.171",
 });
 
 service.interceptors.request.use(

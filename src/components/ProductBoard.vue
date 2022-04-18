@@ -1,37 +1,26 @@
 <template>
-  <el-descriptions :title="product.name" :column="column" border>
-    <el-descriptions-item label="产品编号">
-      {{ product.id }}
-    </el-descriptions-item>
+<section>
+  <!-- <span>{{state.responseData.area[0]}}</span> -->
+    <span>{{state.responseData}}</span>
+  <el-descriptions :title="state.responseData.name" :column="column" border>
     <el-descriptions-item label="产品名">
-      {{ product.name }}
-    </el-descriptions-item>
-    <el-descriptions-item label="开始时间">
-      {{ product.start_date }}
-    </el-descriptions-item>
-    <el-descriptions-item label="结束时间">
-      {{ product.end_date }}
+      {{ state.responseData.name }}
     </el-descriptions-item>
     <el-descriptions-item label="价格">
-      {{ product.price }}
+      {{ state.responseData.price }}
     </el-descriptions-item>
     <el-descriptions-item label="税率">
-      {{ product.rate }}
+      {{ state.responseData.rate }}
     </el-descriptions-item>
     <el-descriptions-item label="详情">
-      {{ product.detail }}
+      {{ state.responseData.detail }}
     </el-descriptions-item>
     <el-descriptions-item label="标签" width="180">
-      <el-tag size="small">{{ product.tag }} </el-tag>
+      <el-tag size="small">{{ state.responseData.tag }} </el-tag>
     </el-descriptions-item>
     <el-descriptions-item label="地区">
-      <div v-if="isString(product.areas)">
-        <el-tag :type="moduloGetItem(tagTypes)">
-          {{ stringifyArea(product.areas) }}
-        </el-tag>
-      </div>
-      <div v-else>
-        <div v-for="(area, index) in product.areas" :key="index">
+      <div>
+        <div v-for="(area, index) in state.responseData.area" :key="index">
           <el-tag :type="moduloGetItem(tagTypes, index)">
             {{ stringifyArea(area) }}
           </el-tag>
@@ -39,32 +28,39 @@
       </div>
     </el-descriptions-item>
     <el-descriptions-item label="库存">
-      {{ product.stock }}
+      {{ state.responseData.stock }}
     </el-descriptions-item>
     <el-descriptions-item label="认证方式">
-      {{ product.auth_type }}
+      {{ stringifyAuthType(state.responseData.auth_type) }}
+      <!-- {{ state.responseData.auth_type }} -->
     </el-descriptions-item>
     <el-descriptions-item label="违约惩罚方式">
-      {{ product.penalty }}
+      {{ stringifyPenalty(state.responseData.penalty) }}
     </el-descriptions-item>
     <el-descriptions-item label="白名单">
-      {{ product.white_list }}
+      {{ state.responseData.white_list }}
     </el-descriptions-item>
     <el-descriptions-item label="担保人">
-      {{ stringifyBondsman(product.bondsman) }}
+      {{ stringifyBondsman(state.responseData.bondsman) }}
+      <!-- {{ state.responseData.bondsman }} -->
     </el-descriptions-item>
   </el-descriptions>
+</section>
 </template>
 
 <script setup>
+import { ref, reactive, onMounted } from "vue";
+import { fetchData } from "../network/request";
+import { getAllProducts } from "../assets/data/products";
 import { tagTypes } from "../utils/tags";
-
 import {
   isString,
   formatDate,
   moduloGetItem,
   stringifyBondsman,
   stringifyArea,
+  stringifyAuthType,
+  stringifyPenalty,
 } from "../utils/util";
 
 import { getProductById } from "../assets/data/products";
@@ -79,6 +75,27 @@ const props = defineProps({
   },
 });
 
-const product = getProductById(props.productId);
+
+const state = reactive({
+  // responseCode: 0,
+  // responseMsg: "",
+  // fetching: false,
+  responseData: [],
+});
+
+onMounted(() => {
+  const config = {
+    url: "/assistance/getProductDetailById/" +props.productId ,
+    method: "GET",
+    header: {
+      "Content-Type": "multipart/form-data",
+    },
+  };
+
+  fetchData(state, config);
+  // const { responseData } = fetchData(config);
+});
+
+
 </script>
 <style lang="scss"></style>
