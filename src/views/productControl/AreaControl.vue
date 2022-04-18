@@ -1,6 +1,7 @@
 <template>
   <section>
-    <span>{{ state.responseData }}</span>
+    <!-- <span>{{ state.responseData }}</span> -->
+    {{sessionStorage}}
     <el-table
       :data="state.responseData"
       :default-sort="{ prop: 'id', order: 'descending' }"
@@ -41,7 +42,7 @@
 <script setup>
 import { tagTypes } from "../../utils/tags";
 import { ref, reactive, onMounted } from "vue";
-import { fetchData } from "../../network/request";
+import { fetchData , postData} from "../../network/request";
 import { getAllProducts } from "../../assets/data/products";
 import {
   isString,
@@ -56,6 +57,7 @@ const state = reactive({
   // fetching: false,
   responseData: [],
 });
+
 
 onMounted(() => {
   const config = {
@@ -72,7 +74,52 @@ onMounted(() => {
 });
 // const products = state.responseData;
 
-const handleSubmit = (row) => {};
+const size = state.responseData.length;
+const username = sessionStorage.getItem("username")
+const ischanged = new Array(1000).fill(0);
+
+const handleSubmit = (row) => {
+    var responseData = state.responseData.filter((num,idx) => {
+    // console.log(ischanged[idx])
+    // console.log(productSize)
+    // console.log(state.responseData.length)
+    // console.log(ischanged)
+
+    return ischanged[idx] === 1; 
+  })
+  console.log(responseData)
+  for(let i=0; i<responseData.length; i++){
+    postData({
+      url: "/assistance/returnAllProductDetail",
+      method: "POST",
+      header: {
+        "Content-Type": "multipart/form-data",
+      },
+      params: responseData[i],
+    })
+    postData({
+      url: "/logrecord/addlog",
+      method: "POST",
+      header: {
+        "Content-Type": "multipart/form-data",
+      },
+      params:{
+        username: sessionStorage.username,
+        opeator: "修改",
+        productname: responseData.name,
+        operatecolumn: 1,
+      },
+    })
+    .then((res) => {
+      if (res.data.code === 200) {
+        // console.log("提交成功！")
+      }
+    })
+    .catch((err) => {
+      console.log(err.msg);
+    });
+  }
+};
 </script>
 
 <style lang="scss" scoped>

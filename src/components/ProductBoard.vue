@@ -94,6 +94,8 @@ onMounted(() => {
   fetchData(config, state);
 });
 
+
+
 const responseData = computed(() => state.responseData);
 </script>
 <style lang="scss"></style>

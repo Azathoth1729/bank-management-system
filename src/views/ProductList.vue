@@ -1,6 +1,7 @@
 <template>
+<el-scrollbar height="450px">
   <el-table
-    :data="products"
+    :data="state.responseData"
     border
     :default-sort="{ prop: 'start_date', order: 'descending' }"
     height="700"
@@ -70,10 +71,6 @@
     </el-table-column>
     <el-table-column prop="name" label="产品名" sortable width="180">
     </el-table-column>
-    <el-table-column prop="start_date" label="起始日期" sortable width="180">
-    </el-table-column>
-    <el-table-column prop="end_date" label="结束日期" sortable width="180">
-    </el-table-column>
     <el-table-column prop="price" label="购买价格(元)" sortable width="180">
     </el-table-column>
     <el-table-column prop="rate" label="利率" sortable width="180">
@@ -90,9 +87,13 @@
       </template>
     </el-table-column>
   </el-table>
+</el-scrollbar>
 </template>
 
 <script setup>
+import { ref, reactive, onMounted,computed } from "vue";
+import { fetchData, postData } from "../network/request";
+import { getAllProducts, getProductById } from "../assets/data/products";
 import { tagTypes } from "../utils/tags";
 import {
   isString,
@@ -101,9 +102,27 @@ import {
   moduloGetItem,
 } from "../utils/util";
 
-import { getAllProducts } from "../assets/data/products";
-
 const products = getAllProducts();
+
+const state = reactive({
+  // responseCode: 0,
+  // responseMsg: "",
+  // fetching: false,
+  responseData: [],
+});
+
+onMounted(() => {
+  const config = {
+    url: "/assistance/returnAllProductDetail",
+    method: "GET",
+    header: {
+      "Content-Type": "multipart/form-data",
+    },
+  };
+
+  fetchData(config, state);
+  // const { responseData } = fetchData(config);
+});
 
 const handleEdit = (product) => {};
 

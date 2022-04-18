@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <el-card class="product-card">
-      <el-scrollbar height="700px">
+      <el-scrollbar height="500px">
         <el-descriptions
           v-for="product in responseData"
           :key="product.id"
