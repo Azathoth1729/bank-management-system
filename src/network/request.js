@@ -58,16 +58,4 @@ export const fetchData = async (config, state = {}) => {
   return state;
 };
 
-export const useFetch = (config) => {
-  const state = reactive({
-    responseCode: 0,
-    responseMsg: "",
-    responseData: [],
-    fetching: false,
-  });
-
-  fetchData(state, config);
-  return { ...toRefs(state) };
-};
-
-export { service };
+export default service;

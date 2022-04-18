@@ -72,7 +72,12 @@
           :to="{
             name: '产品添加-第三步',
             params: {
-              product: JSON.stringify({ ...form, ...previousProdct }),
+              product: JSON.stringify({
+                auth_type: form.auth_type,
+                bondsman: form.bondsman,
+                area: form.area,
+                ...previousProdct,
+              }),
             },
           }"
         />

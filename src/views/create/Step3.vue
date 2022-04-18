@@ -15,7 +15,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="税率">
-          <el-input v-model="form.rate" placeholder="产品的增值税率" />
+          <el-input v-model.number="form.rate" placeholder="产品的增值税率" />
         </el-form-item>
         <el-form-item label="后续税率">
           <el-select
@@ -66,30 +66,28 @@ import { stringifyArea, stringifyObj } from "../../utils/util";
 
 import { ref, reactive } from "vue";
 import { useRoute } from "vue-router";
+import axios from "axios";
 
 const router = useRoute();
 const previousProdct = JSON.parse(router.params.product);
 
 const form = reactive({
   penalty: 0,
-  rate: 0.0,
-  calculate_rate: 0.0,
+  rate: "",
+  calculate_rate: 0,
   stock: 0,
   white_list: 0,
 });
 
 const handleSubmit = () => {
-  const newProduct = { ...previousProdct, ...form };
-  console.log(newProduct);
+  console.log(JSON.stringify({ ...previousProdct, ...form }));
   postData({
     url: "/assistance/addProduct",
     method: "POST",
-    header: {
-      "Content-Type": "multipart/form-data",
+    headers: {
+      "Content-Type": "application/json",
     },
-    params: {
-      newProduct,
-    },
+    data: JSON.stringify({ ...previousProdct, ...form }),
   });
 };
 

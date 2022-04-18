@@ -1,6 +1,6 @@
 <template>
   <section>
-    <span>{{ JSON.stringify(responseData, null, 4) }}</span>
+    {{ JSON.stringify(responseData, null, 4) }}
     <el-descriptions :title="state.responseData.name" :column="column" border>
       <el-descriptions-item label="产品名">
         {{ state.responseData.name }}

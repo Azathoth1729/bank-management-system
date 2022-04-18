@@ -1,5 +1,4 @@
 <template>
-  {{ responseData[0] }}
   <div class="home">
     <el-card class="product-card">
       <el-scrollbar height="700px">
@@ -62,15 +61,16 @@ const state = reactive({
 });
 
 onMounted(() => {
-  const config = {
-    url: "/assistance/listProductIntro",
-    method: "GET",
-    header: {
-      "Content-Type": "multipart/form-data",
+  fetchData(
+    {
+      url: "/assistance/listProductIntro",
+      method: "GET",
+      header: {
+        "Content-Type": "application/json",
+      },
     },
-  };
-
-  fetchData(config, state);
+    state
+  );
 });
 
 const responseData = computed(() => state.responseData);

@@ -1,4 +1,5 @@
 <template>
+  {{ responseData }}
   <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
     <el-tab-pane
       :label="listName"
@@ -6,14 +7,14 @@
       v-for="(listName, index) in listNames"
       :key="index"
     >
-      <UserBoard :data="getWhiteList(index + 1)" />
+      <UserBoard :index="index + 1" />
     </el-tab-pane>
   </el-tabs>
 </template>
 
 <script setup>
 //记得改UserBoard里面的
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 
 import UserBoard from "../components/UserBoard.vue";
 
