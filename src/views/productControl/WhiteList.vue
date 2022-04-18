@@ -98,7 +98,7 @@ var responseData = state.responseData.filter((num,idx) => {
   console.log(responseData)
   for(let i=0; i<responseData.length; i++){
     postData({
-      url: "/assistance/returnAllProductDetail",
+      url: "/assistance/addProduct",
       method: "POST",
       header: {
         "Content-Type": "multipart/form-data",

@@ -81,44 +81,54 @@ const ischanged = new Array(1000).fill(0);
 const handleEdit = (event, product, idx) => {
   product.tag = event;
   ischanged[idx] = 1;
-  console.log(username)
+  console.log(idx)
 };
 
 const handleSubmit = () => {
   var responseData = state.responseData.filter((num,idx) => {
-    // console.log(ischanged[idx])
+    console.log(ischanged[idx])
     // console.log(productSize)
     // console.log(state.responseData.length)
     // console.log(ischanged)
 
     return ischanged[idx] === 1; 
   })
-  console.log(responseData)
+  //console.log("***********"+JSON.stringify(responseData))
+  // let temp = {
+  //   username: sessionStorage.username,
+  //   operator: "修改",
+  //   productname: responseData[0].name,
+  //   operatecolumn: 3
+  // }
+  // console.log("**************"+JSON.stringify(temp));
   for(let i=0; i<responseData.length; i++){
+    console.log(JSON.stringify(responseData[i]))
     postData({
-      url: "/assistance/returnAllProductDetail",
+      url: "/assistance/addProduct",
       method: "POST",
       header: {
-        "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
       },
-      params: responseData[i],
+      data:responseData[i], 
+      // data:JSON.stringify(), 
     })
     postData({
       url: "/logrecord/addlog",
       method: "POST",
       header: {
-        "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
       },
-      params:{
+      // data: temp,
+      data: {
         username: sessionStorage.username,
-        opeator: "修改",
+        operator: "修改",
         productname: responseData.name,
         operatecolumn: 3,
       },
     })
     .then((res) => {
       if (res.data.code === 200) {
-        // console.log("提交成功！")
+        console.log("提交成功！")
       }
     })
     .catch((err) => {

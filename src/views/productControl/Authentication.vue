@@ -108,7 +108,7 @@ const handleSubmit = () => {
       header: {
         "Content-Type": "multipart/form-data",
       },
-      params: responseData[i],
+      data : responseData[i],
     })
     postData({
       url: "/logrecord/addlog",
@@ -116,7 +116,7 @@ const handleSubmit = () => {
       header: {
         "Content-Type": "multipart/form-data",
       },
-      params:{
+      data :{
         username: sessionStorage.username,
         opeator: "修改",
         productname: responseData.name,
