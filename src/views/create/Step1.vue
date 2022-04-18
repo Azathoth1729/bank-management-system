@@ -61,7 +61,6 @@
             },
           }"
         />
-        <el-button type="danger" @click="handleCancel">取消</el-button>
       </div>
     </el-card>
   </div>

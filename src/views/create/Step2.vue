@@ -82,7 +82,13 @@
           }"
         />
         <GoBack text="上一步" btn-type="primary" />
-        <el-button type="danger" @click="handleCancel">取消</el-button>
+        <GoNext
+          text="取消"
+          btn-type="danger"
+          :to="{
+            name: '产品添加-第一步',
+          }"
+        />
       </div>
     </el-card>
 
@@ -118,7 +124,11 @@ import { ref, reactive } from "vue";
 import { useRoute } from "vue-router";
 
 const router = useRoute();
-const previousProdct = JSON.parse(router.params.product);
+
+const routerProduct = router.params.product;
+
+const previousProdct =
+  typeof routerProduct === "undefined" ? {} : JSON.parse(routerProduct);
 
 const areaIsAll = ref(false);
 
