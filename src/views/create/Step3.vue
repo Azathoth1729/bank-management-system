@@ -78,18 +78,10 @@ const form = reactive({
   white_list: 0,
 });
 
-const state = reactive({
-  // responseCode: 0,
-  // responseMsg: "",
-  // fetching: false,
-  postData: {},
-  error: {},
-});
-
 const handleSubmit = () => {
   const newProduct = { ...previousProdct, ...form };
   console.log(newProduct);
-  postData(state, {
+  postData({
     url: "/assistance/addProduct",
     method: "POST",
     header: {
