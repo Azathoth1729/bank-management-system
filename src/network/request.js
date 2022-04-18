@@ -24,10 +24,24 @@ export function request(config) {
   return service(config);
 }
 
+export const postData = async (state = {}, config) => {
+  state.fetching = true;
+  try {
+    const res = await service(config);
+    state.postData = res.data;
+  } catch (err) {
+    state.error = err;
+    console.log("error of fetchData is: ", err);
+  } finally {
+    state.fetching = false;
+  }
+  return state;
+};
+
 export const fetchData = async (state = {}, config) => {
   state.fetching = true;
   try {
-    const res = await service.request(config);
+    const res = await service(config);
     const responseData = res.data;
 
     state.responseCode = responseData.code;

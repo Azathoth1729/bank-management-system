@@ -12,14 +12,14 @@
     <el-table-column prop="detail" label="详情"> </el-table-column>
     <el-table-column label="地区">
       <template #default="scope">
-        <div v-if="isString(scope.row.areas)">
+        <div v-if="isString(scope.row.area)">
           <!-- <strong> scope.$index= {{ scope.$index }} </strong> -->
           <el-tag :type="moduloGetItem(tagTypes, scope.$index)">
-            {{ stringifyArea(scope.row.areas) }}
+            {{ stringifyArea(scope.row.area) }}
           </el-tag>
         </div>
         <div v-else>
-          <div v-for="(area, index) in scope.row.areas" :key="index">
+          <div v-for="(area, index) in scope.row.area" :key="index">
             <!-- <strong>
               (scope.$index, index)= {{ scope.$index }} {{ index }}
             </strong> -->

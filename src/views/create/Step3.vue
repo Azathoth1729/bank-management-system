@@ -61,6 +61,7 @@
 import GoNext from "../../components/GoNext";
 import GoBack from "../../components/GoBack";
 
+import { postData } from "../../network/request";
 import { stringifyArea, stringifyObj } from "../../utils/util";
 
 import { ref, reactive } from "vue";
@@ -70,26 +71,36 @@ const router = useRoute();
 const previousProdct = JSON.parse(router.params.product);
 
 const form = reactive({
-  penalty: "",
-  rate: "",
-  calculate_rate: "",
-  stock: "",
-  white_list: "",
+  penalty: 0,
+  rate: 0.0,
+  calculate_rate: 0.0,
+  stock: 0,
+  white_list: 0,
+});
+
+const state = reactive({
+  // responseCode: 0,
+  // responseMsg: "",
+  // fetching: false,
+  postData: {},
+  error: {},
 });
 
 const handleSubmit = () => {
-  request({
-    url: "/create",
+  const newProduct = { ...previousProdct, ...form };
+  console.log(newProduct);
+  postData(state, {
+    url: "/assistance/addProduct",
     method: "POST",
     header: {
       "Content-Type": "multipart/form-data",
     },
     params: {
-      username: user.username,
-      password: user.password,
+      newProduct,
     },
-  })
+  });
 };
+
 const handleCancel = () => {};
 </script>
 

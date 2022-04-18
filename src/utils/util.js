@@ -24,7 +24,7 @@ function stringifyBondsman(bondsman) {
 }
 
 function stringifyPenalty(auth_type) {
-  const authMap = { 0: "利率减少", 1: "固定罚款", 2: "信誉度降低" };
+  const authMap = { 0: "不启用", 1: "固定罚款", 2: "信誉度降低", 3: "利率减少" };
   return authMap[auth_type];
 }
 
