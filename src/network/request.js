@@ -58,4 +58,16 @@ export const fetchData = async (config, state = {}) => {
   return state;
 };
 
+export const directFetch = async (config) => {
+  try {
+    const res = await service(config);
+    const responseData = res.data;
+    const data = responseData.data;
+
+    return data;
+  } catch (err) {
+    console.log("error of fetchData is: ", err);
+  }
+};
+
 export default service;

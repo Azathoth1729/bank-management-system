@@ -54,9 +54,6 @@ import { tagTypes } from "../../utils/tags";
 import { stringifyArea, moduloGetItem, formatDate } from "../../utils/util";
 
 const state = reactive({
-  // responseCode: 0,
-  // responseMsg: "",
-  // fetching: false,
   responseData: [],
 });
 
