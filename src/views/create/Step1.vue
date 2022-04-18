@@ -17,39 +17,21 @@
             placeholder="请输入产品名(20字以内)"
           />
         </el-form-item>
-
-        <el-form-item label="起始时间">
-          <el-col :span="11">
-            <el-date-picker
-              type="date"
-              placeholder="选择日期"
-              v-model="form.start_date"
-              style="width: 100%"
-            ></el-date-picker>
-          </el-col>
+        <el-form-item label="年限">
+          <el-input v-model.number="form.time" placeholder="请输入产品年限" />
         </el-form-item>
-
-        <el-form-item label="结束时间">
-          <el-col :span="11">
-            <el-date-picker
-              type="date"
-              placeholder="选择日期"
-              v-model="form.end_date"
-              style="width: 100%"
-            ></el-date-picker>
-          </el-col>
-        </el-form-item>
-
         <el-form-item label="产品价格">
           <el-input
             v-model.number="form.price"
             placeholder="请输入产品价格(小数)"
           />
         </el-form-item>
-        <el-form-item label="产品利率">
+
+        <el-form-item label="产品介绍">
           <el-input
-            v-model.number="form.rate"
-            placeholder="请输入产品利率(小数,=>0)"
+            type="textarea"
+            v-model="form.intro"
+            placeholder="产品的大致介绍(50字以内)"
           />
         </el-form-item>
         <el-form-item label="产品详情">
@@ -59,16 +41,12 @@
             placeholder="产品的详细描述(100字以内)"
           />
         </el-form-item>
-
-        <el-form-item label="产品类型">
-          <el-select v-model="form.tag" placeholder="请选择基金所属类型">
-            <el-option
-              v-for="(tag, index) in AllTags"
-              :key="index"
-              :label="tag"
-              :value="tag"
-            />
-          </el-select>
+        <el-form-item label="产品标签">
+          <el-input
+            type="textarea"
+            v-model="form.tag"
+            placeholder="产品的标签(10字以内)"
+          />
         </el-form-item>
       </el-form>
 
@@ -83,7 +61,7 @@
             },
           }"
         />
-        <el-button type="danger" @click="() => handleCancel()">取消</el-button>
+        <el-button type="danger" @click="handleCancel">取消</el-button>
       </div>
     </el-card>
   </div>
@@ -97,12 +75,11 @@ import { reactive } from "vue";
 import { useRouter } from "vue-router";
 
 const form = reactive({
-  id: "",
+  id: 0,
   name: "",
-  start_date: "",
-  end_date: "",
-  price: "",
-  rate: "",
+  time: 0,
+  price: 0,
+  intro: "",
   detail: "",
   tag: "",
 });

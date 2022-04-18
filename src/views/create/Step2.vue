@@ -34,7 +34,7 @@
             <el-button
               :disabled="false"
               type="primary"
-              @click="() => handleSubmitArea(form)"
+              @click="handleSubmitArea"
               >添加</el-button
             >
           </el-form-item>
@@ -84,7 +84,7 @@
     <el-card class="areas-card">
       您已添加的地区:
       <el-scrollbar height="600px">
-        <div v-for="(place, index) in form.areas" :key="index">
+        <div v-for="(place, index) in form.area" :key="index">
           {{ index }} :
           <el-tag :type="moduloGetItem(tagTypes, index)">
             {{ stringifyArea(place) }}
@@ -123,12 +123,12 @@ const form = reactive({
   region: "",
   auth_type: 0,
   bondsman: false,
-  areas: [],
+  area: [],
 });
 
-const handleSubmitArea = (form) => {
+const handleSubmitArea = () => {
   if (areaIsAll.value === true) {
-    form.areas.push("all");
+    form.area.push("all");
   } else {
     const newArea = {
       province: form.province,
@@ -136,15 +136,14 @@ const handleSubmitArea = (form) => {
       region: form.region,
     };
 
-    form.areas.push(newArea);
+    form.area.push(newArea);
   }
 };
 
 const handleDeleteArea = (index) => {
-  form.areas.splice(index, 1);
+  form.area.splice(index, 1);
 };
 
-const handleSubmit = (areas) => {};
 const handleCancel = () => {};
 </script>
 

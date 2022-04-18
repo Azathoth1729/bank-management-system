@@ -1,9 +1,10 @@
 <template>
+  {{ responseData[0] }}
   <div class="home">
     <el-card class="product-card">
       <el-scrollbar height="700px">
         <el-descriptions
-          v-for="product in state.responseData"
+          v-for="product in responseData"
           :key="product.id"
           :title="product.name"
           :column="4"
@@ -46,7 +47,7 @@
 <script setup>
 import GoNext from "../../components/GoNext";
 
-import { ref, reactive, onMounted } from "vue";
+import { ref, reactive, onMounted, computed } from "vue";
 import { fetchData } from "../../network/request";
 import { getAllProducts } from "../../assets/data/products";
 
@@ -70,8 +71,9 @@ onMounted(() => {
   };
 
   fetchData(state, config);
-  // const { responseData } = fetchData(config);
 });
+
+const responseData = computed(() => state.responseData);
 </script>
 
 <style scoped>
