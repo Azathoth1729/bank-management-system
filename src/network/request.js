@@ -24,7 +24,8 @@ export function request(config) {
   return service(config);
 }
 
-export const postData = async (state = {}, config) => {
+// post and others
+export const postData = async (config, state = {}) => {
   state.fetching = true;
   try {
     const res = await service(config);
@@ -38,7 +39,8 @@ export const postData = async (state = {}, config) => {
   return state;
 };
 
-export const fetchData = async (state = {}, config) => {
+// get
+export const fetchData = async (config, state = {}) => {
   state.fetching = true;
   try {
     const res = await service(config);

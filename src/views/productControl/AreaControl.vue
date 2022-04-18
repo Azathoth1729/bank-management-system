@@ -1,41 +1,41 @@
 <template>
-<section>
-  <span>{{state.responseData}}</span>
-  <el-table
-    :data="state.responseData"
-    :default-sort="{ prop: 'id', order: 'descending' }"
-    border
-    style="width: 100%"
-  >
-    <el-table-column prop="id" label="ID" sortable> </el-table-column>
-    <el-table-column prop="name" label="产品名" sortable> </el-table-column>
-    <el-table-column prop="detail" label="详情"> </el-table-column>
-    <el-table-column label="地区">
-      <template #default="scope">
-        <div v-if="isString(scope.row.area)">
-          <!-- <strong> scope.$index= {{ scope.$index }} </strong> -->
-          <el-tag :type="moduloGetItem(tagTypes, scope.$index)">
-            {{ stringifyArea(scope.row.area) }}
-          </el-tag>
-        </div>
-        <div v-else>
-          <div v-for="(area, index) in scope.row.area" :key="index">
-            <!-- <strong>
-              (scope.$index, index)= {{ scope.$index }} {{ index }}
-            </strong> -->
-            <el-tag :type="moduloGetItem(tagTypes, index)">
-              {{ stringifyArea(area) }}
+  <section>
+    <span>{{ state.responseData }}</span>
+    <el-table
+      :data="state.responseData"
+      :default-sort="{ prop: 'id', order: 'descending' }"
+      border
+      style="width: 100%"
+    >
+      <el-table-column prop="id" label="ID" sortable> </el-table-column>
+      <el-table-column prop="name" label="产品名" sortable> </el-table-column>
+      <el-table-column prop="detail" label="详情"> </el-table-column>
+      <el-table-column label="地区">
+        <template #default="scope">
+          <div v-if="isString(scope.row.area)">
+            <!-- <strong> scope.$index= {{ scope.$index }} </strong> -->
+            <el-tag :type="moduloGetItem(tagTypes, scope.$index)">
+              {{ stringifyArea(scope.row.area) }}
             </el-tag>
           </div>
-        </div>
-      </template>
-    </el-table-column>
-  </el-table>
+          <div v-else>
+            <div v-for="(area, index) in scope.row.area" :key="index">
+              <!-- <strong>
+              (scope.$index, index)= {{ scope.$index }} {{ index }}
+            </strong> -->
+              <el-tag :type="moduloGetItem(tagTypes, index)">
+                {{ stringifyArea(area) }}
+              </el-tag>
+            </div>
+          </div>
+        </template>
+      </el-table-column>
+    </el-table>
 
-  <el-button type="primary" class="done-btn" @click="handleSubmit">
-    提交修改
-  </el-button>
-</section>
+    <el-button type="primary" class="done-btn" @click="handleSubmit">
+      提交修改
+    </el-button>
+  </section>
 </template>
 
 <script setup>
@@ -66,15 +66,13 @@ onMounted(() => {
     },
   };
 
-  fetchData(state, config);
+  fetchData(config, state);
   // fetchData(whitelist, config);
   // const { responseData } = fetchData(config);
 });
 // const products = state.responseData;
 
-const handleSubmit = (row) => {
-  
-};
+const handleSubmit = (row) => {};
 </script>
 
 <style lang="scss" scoped>

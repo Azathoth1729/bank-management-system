@@ -70,7 +70,7 @@ onMounted(() => {
     },
   };
 
-  fetchData(state, config);
+  fetchData(config, state);
 });
 
 const responseData = computed(() => state.responseData);
