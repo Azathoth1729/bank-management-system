@@ -1,4 +1,5 @@
 <template>
+  {{state.responseData}}
   <div class="history-table">
     <el-table :data="operations" stripe style="width: 100%">
       <el-table-column label="操作时间" width="280">
@@ -27,6 +28,30 @@
 <script setup>
 import { tagTypes } from "../utils/tags";
 import { moduloGetItem, formatDate } from "../utils/util";
+import { ref, reactive,onMounted } from "vue";
+import { fetchData } from "../network/request";
+import { getAllProducts, getProductById } from "../assets/data/products";
+
+const state = reactive({
+  // responseCode: 0,
+  // responseMsg: "",
+  // fetching: false,
+  responseData: [],
+});
+
+onMounted(() => {
+  const config = {
+    url: "/logrecord/log",
+    method: "GET",
+    header: {
+      "Content-Type": "multipart/form-data",
+    },
+  };
+
+  fetchData(state, config);
+  // const { responseData } = fetchData(config);
+});
+// const products = getAllProducts();
 
 const tasks = [
   "地区控制",

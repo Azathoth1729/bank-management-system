@@ -1,5 +1,6 @@
 <template>
-  <!-- <span>{{state.responseData[0]}}</span> -->
+  <!-- {{productSize}} -->
+  <span>{{username}}</span>
   <el-scrollbar height="450px">
     <el-table
       :data="state.responseData"
@@ -19,7 +20,7 @@
       <el-table-column label="修改">
         <template #default="scope">
           <el-select
-            @change="handleEdit($event, scope.row)"
+            @change="handleEdit($event, scope.row, scope.$index)"
             v-model.number="auth_types[scope.$index]"
             placeholder="身份认证信息"
           >
@@ -46,8 +47,8 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted } from "vue";
-import { fetchData } from "../../network/request";
+import { ref, reactive, onMounted,computed } from "vue";
+import { fetchData, postData } from "../../network/request";
 import { getAllProducts, getProductById } from "../../assets/data/products";
 import {
   stringifyObj,
@@ -64,7 +65,7 @@ const state = reactive({
 
 onMounted(() => {
   const config = {
-    url: "/assistance/listProductIntro",
+    url: "/assistance/returnAllProductDetail",
     method: "GET",
     header: {
       "Content-Type": "multipart/form-data",
@@ -78,12 +79,59 @@ onMounted(() => {
 
 const auth_types = reactive([]);
 
-const handleEdit = (event, product) => {
+const productSize = computed(()=>state.responseData.length);
+const username = sessionStorage.getItem("username")
+const ischanged = new Array(1000).fill(0);
+
+const handleEdit = (event, product, idx) => {
   product.auth_type = parseInt(event);
+  console.log(idx)
+  ischanged[idx] = 1;
+  console.log(username)
 };
 
+
 const handleSubmit = () => {
-  fetchData();
+  var responseData = state.responseData.filter((num,idx) => {
+    console.log(ischanged[idx])
+    // console.log(productSize)
+    // console.log(state.responseData.length)
+    // console.log(ischanged)
+
+    return ischanged[idx] === 1; 
+  })
+  console.log(responseData)
+  for(let i=0; i<responseData.length; i++){
+    postData({
+      url: "/assistance/returnAllProductDetail",
+      method: "POST",
+      header: {
+        "Content-Type": "multipart/form-data",
+      },
+      params: responseData[i],
+    })
+    postData({
+      url: "/logrecord/addlog",
+      method: "POST",
+      header: {
+        "Content-Type": "multipart/form-data",
+      },
+      params:{
+        username: sessionStorage.username,
+        opeator: "修改",
+        productname: responseData.name,
+        operatecolumn: 2,
+      },
+    })
+    .then((res) => {
+      if (res.data.code === 200) {
+        // console.log("提交成功！")
+      }
+    })
+    .catch((err) => {
+      console.log(err.msg);
+    });
+  }
 };
 </script>
 

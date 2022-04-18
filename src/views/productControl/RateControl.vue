@@ -1,6 +1,7 @@
 <template>
+  <el-scrollbar height="450px">
   <el-table
-    :data="products"
+    :data="state.responseData"
     :default-sort="{ prop: 'name', order: 'ascending' }"
     border
     style="width: 100%"
@@ -44,10 +45,12 @@
       </span>
     </template>
   </el-dialog>
+</el-scrollbar>
 </template>
 
 <script setup>
-import { ref, reactive, onMounted } from "vue";
+import { ref, reactive, onMounted,computed } from "vue";
+import { fetchData, postData } from "../../network/request";
 import { getAllProducts, getProductById } from "../../assets/data/products";
 import { stringifyArea, stringifyAuthType } from "../../utils/util";
 
@@ -60,6 +63,30 @@ const form = reactive({
   rate: "",
   calculate_rate: "",
 });
+
+const state = reactive({
+  // responseCode: 0,
+  // responseMsg: "",
+  // fetching: false,
+  responseData: [],
+});
+
+onMounted(() => {
+  const config = {
+    url: "/assistance/returnAllProductDetail",
+    method: "GET",
+    header: {
+      "Content-Type": "multipart/form-data",
+    },
+  };
+
+  fetchData(config, state);
+  // const { responseData } = fetchData(config);
+});
+
+const productSize = computed(()=>state.responseData.length);
+const username = sessionStorage.getItem("username")
+const ischanged = new Array(1000).fill(0);
 
 const handleEdit = (row) => {
   currentId.value = row.id;
