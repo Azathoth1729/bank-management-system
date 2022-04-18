@@ -55,7 +55,7 @@ onMounted(() => {
       ? `/${props.listname}/all/${props.index}`
       : `/${props.listname}/all`;
 
-  console.log("url for fetch list is:", props.listname);
+  // console.log("url for fetch list is:", props.listname);
   fetchData(
     {
       url: url,

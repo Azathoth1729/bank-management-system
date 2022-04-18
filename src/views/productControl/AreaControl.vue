@@ -1,7 +1,7 @@
 <template>
   <section>
     <!-- <span>{{ state.responseData }}</span> -->
-    {{sessionStorage}}
+    {{ sessionStorage }}
     <el-table
       :data="state.responseData"
       :default-sort="{ prop: 'id', order: 'descending' }"
@@ -42,7 +42,7 @@
 <script setup>
 import { tagTypes } from "../../utils/tags";
 import { ref, reactive, onMounted } from "vue";
-import { fetchData , postData} from "../../network/request";
+import { fetchData, postData } from "../../network/request";
 import { getAllProducts } from "../../assets/data/products";
 import {
   isString,
@@ -58,13 +58,12 @@ const state = reactive({
   responseData: [],
 });
 
-
 onMounted(() => {
   const config = {
-    url: "/assistance/listProductIntro",
+    url: "/assistance/returnAllProductDetail",
     method: "GET",
     header: {
-      "Content-Type": "multipart/form-data",
+      "Content-Type": "application/json",
     },
   };
 
@@ -75,33 +74,33 @@ onMounted(() => {
 // const products = state.responseData;
 
 const size = state.responseData.length;
-const username = sessionStorage.getItem("username")
+const username = sessionStorage.getItem("username");
 const ischanged = new Array(1000).fill(0);
 
 const handleSubmit = (row) => {
-    var responseData = state.responseData.filter((num,idx) => {
+  var responseData = state.responseData.filter((num, idx) => {
     // console.log(ischanged[idx])
     // console.log(productSize)
     // console.log(state.responseData.length)
     // console.log(ischanged)
 
-    return ischanged[idx] === 1; 
-  })
-  console.log(responseData)
-  for(let i=0; i<responseData.length; i++){
+    return ischanged[idx] === 1;
+  });
+  console.log(responseData);
+  for (let i = 0; i < responseData.length; i++) {
     postData({
-      url: "/assistance/returnAllProductDetail",
+      url: "/assistance/updateProduct",
       method: "POST",
       header: {
-        "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
       },
-      data : responseData[i],
-    })
+      data: responseData[i],
+    });
     postData({
       url: "/logrecord/addlog",
       method: "POST",
       header: {
-        "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
       },
       data: {
         username: sessionStorage.username,
@@ -110,14 +109,14 @@ const handleSubmit = (row) => {
         operatecolumn: 1,
       },
     })
-    .then((res) => {
-      if (res.data.code === 200) {
-        // console.log("提交成功！")
-      }
-    })
-    .catch((err) => {
-      console.log(err.msg);
-    });
+      .then((res) => {
+        if (res.data.code === 200) {
+          // console.log("提交成功！")
+        }
+      })
+      .catch((err) => {
+        console.log(err.msg);
+      });
   }
 };
 </script>

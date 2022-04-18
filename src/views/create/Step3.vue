@@ -45,15 +45,10 @@
           </el-select>
         </el-form-item>
       </el-form>
+
       <div class="nav-btns">
         <GoBack text="上一步" btn-type="primary" />
-        <GoNext
-          text="取消"
-          btn-type="danger"
-          :to="{
-            name: '产品添加-第一步',
-          }"
-        />
+        <el-button type="danger" @click="handleCancel">取消</el-button>
         <div class="done-btn">
           <el-button type="primary" @click="handleSubmit">完成创建</el-button>
         </div>
@@ -74,13 +69,7 @@ import { useRoute } from "vue-router";
 import axios from "axios";
 
 const router = useRoute();
-
-const routerProduct = router.params.product;
-
-// console.log("routerProduct is", routerProduct);
-
-const previousProdct =
-  typeof routerProduct === "undefined" ? {} : JSON.parse(routerProduct);
+const previousProdct = JSON.parse(router.params.product);
 
 const form = reactive({
   penalty: 0,

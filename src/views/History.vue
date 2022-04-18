@@ -1,25 +1,9 @@
 <template>
-  {{state.responseData}}
   <div class="history-table">
-    <el-table :data="operations" stripe style="width: 100%">
-      <el-table-column label="操作时间" width="280">
-        <template #default="scope">
-          {{ scope.row.time }}
-        </template>
-      </el-table-column>
-      <el-table-column label="操作类型">
-        <template #default="scope">
-          <el-tag :type="moduloGetItem(operationTagTypes, scope.$index)"
-            >{{ scope.row.operationType }}
-          </el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column label="操作事项">
-        <template #default="scope">
-          <el-tag :type="moduloGetItem(tagTypes, scope.$index)"
-            >{{ scope.row.task }}
-          </el-tag>
-        </template>
+    <el-table :data="state.responseData" stripe style="width: 100%">
+      <el-table-column prop="id" label="ID" sortable> </el-table-column>
+      <el-table-column prop="name" label="操作名陈" sortable> </el-table-column>
+      <el-table-column prop="createTime" label="操作时间" sortable>
       </el-table-column>
     </el-table>
   </div>
@@ -28,14 +12,11 @@
 <script setup>
 import { tagTypes } from "../utils/tags";
 import { moduloGetItem, formatDate } from "../utils/util";
-import { ref, reactive,onMounted } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import { fetchData } from "../network/request";
 import { getAllProducts, getProductById } from "../assets/data/products";
 
 const state = reactive({
-  // responseCode: 0,
-  // responseMsg: "",
-  // fetching: false,
   responseData: [],
 });
 
@@ -44,11 +25,11 @@ onMounted(() => {
     url: "/logrecord/log",
     method: "GET",
     header: {
-      "Content-Type": "multipart/form-data",
+      "Content-Type": "application/json",
     },
   };
 
-  fetchData(state, config);
+  fetchData(config, state);
   // const { responseData } = fetchData(config);
 });
 // const products = getAllProducts();

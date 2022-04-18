@@ -63,7 +63,7 @@ onMounted(() => {
     url: "/assistance/returnAllProductDetail",
     method: "GET",
     header: {
-      "Content-Type": "multipart/form-data",
+      "Content-Type": "application/json",
     },
   };
 
@@ -104,7 +104,7 @@ const handleSubmit = () => {
   for(let i=0; i<responseData.length; i++){
     console.log(JSON.stringify(responseData[i]))
     postData({
-      url: "/assistance/addProduct",
+      url: "/assistance/updateProduct",
       method: "POST",
       header: {
         "Content-Type": "application/json",

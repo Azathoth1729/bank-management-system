@@ -69,7 +69,7 @@ onMounted(() => {
     url: "/assistance/returnAllProductDetail",
     method: "GET",
     header: {
-      "Content-Type": "multipart/form-data",
+      "Content-Type": "application/json",
     },
   };
 
@@ -100,18 +100,19 @@ const handleSubmit = () => {
   console.log(responseData)
   for(let i=0; i<responseData.length; i++){
     postData({
-      url: "/assistance/returnAllProductDetail",
+      url: "/assistance/updateProduct",
       method: "POST",
       header: {
-        "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
       },
       data : responseData[i],
     })
+    
     postData({
       url: "/logrecord/addlog",
       method: "POST",
       header: {
-        "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
       },
       data :{
         username: sessionStorage.username,
